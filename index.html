@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login e Registro</title>
+  <link rel="stylesheet" href="login.css">
+    <link rel="shortcut icon" href="img/logo_2_png.png" type="image/x-icon">
+</head>
+<body>
+  <div class="container">
+    <h1>Portal do CVJourney Empresas</h1>
+
+    <!-- Botões para alternar -->
+    <div class="toggle-buttons">
+      <button id="t_login" class="pri entrada">Login</button>
+      <button id="t_registrar" class="entrada">Registrar</button>
+    </div>
+
+    <!-- Formulário de Login -->
+    <div id="form-login" class="form ativo">
+
+      <div id="registro">
+        <label for="login-empresa">Nome da Empresa:</label>
+        <input type="text" id="login-empresa" placeholder="Digite o nome da empresa" required>
+      </div>
+
+      <label for="login-username">Usuário:</label>
+      <input type="text" id="login-username" placeholder="Digite seu usuário" required>
+
+      <label for="login-password">Senha:</label>
+      <input type="password" id="login-password" placeholder="Digite sua senha" required>
+
+      <button type="submit" id="next">Entrar</button>
+    </form>
+
+
+  </div>
+
+  <script src="script_login.js"></script>
+  <script src="script_checkin.js"></script>
+
+</body>
+</html>

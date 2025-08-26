@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CVJourney</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" href="img/logo_2_png.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+    <header id="inicio">
+        <div id="texto_head">
+            <h3>Bem vindo ao <h1>CVJourney Empresas</h1></h3>
+        </div>
+    </header>
+    <div id="corpo">
+
+        <abbr title="Aqui fica os seus post">
+            <span class="material-icons" id="folder">folder</span>
+        </abbr>
+        
+        <div id="info">
+            <p id="info_">
+                Nos primeiros 3 meses, o CVJourney Empresas oferece suporte completo e a possibilidade de divulgar todas as suas propriedades. <br> <br>
+                
+                Após esse período, o app continuará gratuito, mas com suporte limitado. Para ter acesso ao CVJourney Empresas completo, será necessário escolher nossos planos premium, que trazem novidades exclusivas e ajudam a subir no ranking das melhores empresas em Cabo Verde.
+            </p>
+        </div>
+        <button id="vermais">Ver mais informação</button>
+        <div id="corte"></div>
+        <div id="msg_">
+            <abbr title="Todas as solicitações do seu serviço estão disponíveis aqui.">
+                <a href="email.html">
+                    <span class="material-icons" id="email">mail</span>
+                </a>
+            </abbr>
+        </div>
+        <div id="cate_area">
+            <i class="material-icons" id="perfil_x">person_pin</i>
+            <h2 id="titulo_area">Escolhe a sua area</h2>
+            <select name="esc_categoria" id="escolha">
+                <option value="nada">Selecione a sua area</option>
+                <option value="guias" class="escolha">Guia & Tours</option>
+                <option value="estadia" class="escolha">Estadia & Hotel</option>
+                <option value="restaurante" class="escolha">Restaurante</option>
+                <option value="taxi" class="escolha">Taxi</option>
+            </select>
+        </div>
+        
+        <div id="campos">
+            
+            <div id="nada" class="apareca">
+                <h2>Nenhuma area escolhida <br>::>_<::</h2>
+            </div>
+
+            <h3 id="titulo_guia" class="venha"> Adicione os dados que serão analisados e em seguida, divulgados...</h3>
+
+            <!--guias && empresas-->
+            <div id="guias" class="apareca desapareca">
+                
+
+                <input type="text" name="" id="nome_guia" placeholder="Digite o nome do lugar ou espaço" class="dados_inseridos">
+                
+                <select name="" id="categoria_guia" class="dados_inseridos">
+                    <option value="historico">Selecione a categoria do lugar</option>
+                    <option value="praias" class="catego">Praias</option>
+                    <option value="cultura" class="catego">Cultura</option>
+                    <option value="trilhas" class="catego">Trilhas</option>
+                    <option value="aquaticos" class="catego">Aquáticos</option>
+                    <option value="fauna_marinha" class="catego">Fauna</option>
+                    <option value="gastronomia" class="catego">Gastronomia</option>
+                    <option value="historico" class="catego">Histórico</option>
+                    <option value="artesanato" class="catego">Artesanato</option>
+                    <option value="vulcao" class="catego">Vulcão</option>
+                </select>
+
+
+
+                <input type="number" name="" id="estrela_guia" class="dados_inseridos" placeholder="Numero de estrela de 0-5" max="5" min="0">
+                <div id="imagens_guia_">
+                    <img src="img/__add__x.jpeg" alt="" id="img_1" class="img_troca">
+                    
+                    <img src="img/__add__x.jpeg" alt="" id="img_2" class="img_troca">
+                    
+                    <img src="img/__add__x.jpeg" alt="" id="img_3" class="img_troca">
+                    
+                    <img src="img/__add__x.jpeg" alt="" id="img_4" class="img_troca">
+                    
+                </div>
+                <select name="" id="ilha_guia" class="dados_inseridos">
+                    <option value="">Selecione a ilha da propriedade</option>
+                    <option value="santiago">Santiago</option>
+                    <option value="são vicente">São vicente</option>
+                    <option value="sal">Sal</option>
+                    <option value="maio">Maio</option>
+                    <option value="boa vista">Boa vista</option>
+                    <option value="santo antão">Santo Antão</option>
+                    <option value="são nicolau">São Nicolau</option>
+                    <option value="brava">Brava</option>
+                    <option value="fogo">Fogo</option>
+                </select>
+                <input type="text" id="local_guia" placeholder="Digite a cidade onde esta situado" class="dados_inseridos">
+                <textarea name="" id="info_guia" placeholder="Digite alguma informação sobre" rows="10" maxlength="200">
+                </textarea>
+                <h6 class="numero_">0/200</h6>
+    
+            </div>
+    
+            <!-- ESTADIA -->
+            <div id="estadia" class="apareca desapareca">
+                <h3 id="titulo_estadia">Adicionar fotos da estadia</h3>
+                <input type="text" id="nome_estadia" placeholder="Digite o nome do lugar" class="dados_inseridos">
+    
+                <div id="imagens_estadia_">
+                    <img src="img/__add__x.jpeg" alt="" id="estadia_img_1" class="img_troca">
+                    
+                    <img src="img/__add__x.jpeg" alt="" id="estadia_img_2" class="img_troca">
+                    
+                    <img src="img/__add__x.jpeg" alt="" id="estadia_img_3" class="img_troca">
+                    
+                    <img src="img/__add__x.jpeg" alt="" id="estadia_img_4" class="img_troca">
+                    
+                </div>
+    
+                <input type="text" id="local_estadia" placeholder="Digite a localização" class="dados_inseridos">
+    
+                <select id="ilha_estadia" class="dados_inseridos">
+                    <option value="">Selecione a ilha</option>
+                    <option value="santiago">Santiago</option>
+                    <option value="sao_vicente">São Vicente</option>
+                    <option value="sal">Sal</option>
+                    <option value="maio">Maio</option>
+                    <option value="boa_vista">Boa Vista</option>
+                    <option value="santo_antao">Santo Antão</option>
+                    <option value="sao_nicolau">São Nicolau</option>
+                    <option value="brava">Brava</option>
+                    <option value="fogo">Fogo</option>
+                </select>
+
+                <select name="" id="reserva_estadia" class="dados_inseridos">
+                    <option value="false">Disponivel</option>
+                    <option value="true">Reservado</option>
+                </select>
+    
+                <input type="number" id="preco_estadia" placeholder="Preço da reserva por mês (ECV)" class="dados_inseridos">
+    
+                <textarea id="info_estadia" placeholder="Digite informações sobre a estadia" rows="6" maxlength="200"></textarea>
+                <h6 class="numero_">0/200</h6>
+            </div>
+    
+            <!-- RESTAURANTE -->
+            <div id="restaurante" class="apareca desapareca">
+                <h3 id="titulo_restaurante">Adicionar fotos do restaurante</h3>
+
+                <input type="text" id="nome_restaurante" placeholder="Digite o nome do restaurante" class="dados_inseridos"> 
+
+                <div id="imagens_restaurante_">
+                    <img src="img/__add__x.jpeg" alt="" id="rest_img_1" class="img_troca">
+                    
+                    <img src="img/__add__x.jpeg" alt="" id="rest_img_2" class="img_troca">
+                    
+                    <img src="img/__add__x.jpeg" alt="" id="rest_img_3" class="img_troca">
+                    
+                    <img src="img/__add__x.jpeg" alt="" id="rest_img_4" class="img_troca">
+                    
+                </div>
+    
+
+                <input type="number" name="" id="estrela_restaurante" class="dados_inseridos" placeholder="Estrelas do restaurante 0-5" max="5" min="0">
+    
+                <textarea id="info_restaurante" placeholder="Digite informações sobre o restaurante" rows="6" maxlength="200"></textarea>
+                <h6 class="numero_">0/200</h6>
+    
+    
+                <div id="p_1" class="pratos_info">
+                    <input type="text" id="prato_1" placeholder="Nome do prato">
+                    <input type="number" id="prato_preco_1" placeholder="Preço do prato">
+                    <input type="text" id="prato_pais_1" placeholder="País do prato">
+                    <input type="number" id="prato_estrela_1" placeholder="Estrela (0-5)">
+                </div>
+    
+                <div id="p_2" class="pratos_info">
+                    <input type="text" id="prato_2" placeholder="Nome do prato">
+                    <input type="number" id="prato_preco_2" placeholder="Preço do prato">
+                    <input type="text" id="prato_pais_2" placeholder="País do prato">
+                    <input type="number" id="prato_estrela_2" placeholder="Estrela (0-5)">
+                </div>
+    
+                <div id="p_3" class="pratos_info">
+                    <input type="text" id="prato_3" placeholder="Nome do prato">
+                    <input type="number" id="prato_preco_3" placeholder="Preço do prato">
+                    <input type="text" id="prato_pais_3" placeholder="País do prato">
+                    <input type="number" id="prato_estrela_3" placeholder="Estrela (0-5)">
+                </div>
+    
+                <div id="p_4" class="pratos_info">
+                    <input type="text" id="prato_4" placeholder="Nome do prato">
+                    <input type="number" id="prato_preco_4" placeholder="Preço do prato">
+                    <input type="text" id="prato_pais_4" placeholder="País do prato">
+                    <input type="number" id="prato_estrela_4" placeholder="Estrela (0-5)">
+                </div>
+    
+                <div id="p_5" class="pratos_info">
+                    <input type="text" id="prato_5" placeholder="Nome do prato">
+                    <input type="number" id="prato_preco_5" placeholder="Preço do prato">
+                    <input type="text" id="prato_pais_5" placeholder="País do prato">
+                    <input type="number" id="prato_estrela_5" placeholder="Estrela (0-5)">
+                </div>
+                
+                <div id="prato_imagem_">
+                    <h3 id="titulo_prato">Inclua a foto dos 5 pratos típicos para encantar os turistas.</h3>
+                    <img src="img/pratos___892__telx.avif" alt="" id="prato_img_1" class="pratos img_troca">
+                    <img src="img/pratos___892__telx.avif" alt="" id="prato_img_2" class="pratos img_troca">
+                    <img src="img/pratos___892__telx.avif" alt="" id="prato_img_3" class="pratos img_troca">
+                    <img src="img/pratos___892__telx.avif" alt="" id="prato_img_4" class="pratos img_troca">
+                    <img src="img/pratos___892__telx.avif" alt="" id="prato_img_5" class="pratos img_troca">
+                    
+                </div>
+    
+                <select id="ilha_restaurante" class="dados_inseridos">
+                    <option value="">Selecione a ilha</option>
+                    <option value="santiago">Santiago</option>
+                    <option value="sao_vicente">São Vicente</option>
+                    <option value="sal">Sal</option>
+                    <option value="maio">Maio</option>
+                    <option value="boa_vista">Boa Vista</option>
+                    <option value="santo_antao">Santo Antão</option>
+                    <option value="sao_nicolau">São Nicolau</option>
+                    <option value="brava">Brava</option>
+                    <option value="fogo">Fogo</option>
+                </select>
+            </div>
+    
+            <!-- TÁXI -->
+            <div id="taxi" class="apareca desapareca">
+    
+
+
+                <select id="ilha_taxi" class="dados_inseridos">
+                    <option value="">Selecione a ilha</option>
+                    <option value="santiago">Santiago</option>
+                    <option value="sao_vicente">São Vicente</option>
+                    <option value="sal">Sal</option>
+                    <option value="maio">Maio</option>
+                    <option value="boa_vista">Boa Vista</option>
+                    <option value="santo_antao">Santo Antão</option>
+                    <option value="sao_nicolau">São Nicolau</option>
+                    <option value="brava">Brava</option>
+                    <option value="fogo">Fogo</option>
+                </select>
+
+                <input type="text" id="nome_taxi" placeholder="Nome do motorista" class="dados_inseridos">  
+
+                <div id="foto_perfil_taxi_">
+                    <img src="img/__perfil_23x.png" alt="" id="taxi_img_perfil" style="border: none;" class="img_troca">
+                    
+                </div>
+    
+                <input type="text" id="matricula_taxi" placeholder="Chapa do carro" class="dados_inseridos">
+                <input type="text" id="marca_taxi" placeholder="Marca do carro" class="dados_inseridos">
+                <input type="text" id="modelo_taxi" placeholder="Modelo do carro" class="dados_inseridos">
+    
+                <div id="imagens_taxi_">
+                    <h4 style="display: block;">4 lados diferentes</h4>
+                    <img src="img/__3ccaro.jpg" alt="" id="taxi_img_1" class="img_troca">
+                    
+                    <img src="img/__3ccaro.jpg" alt="" id="taxi_img_2" class="img_troca">
+                    
+                    <img src="img/__3ccaro.jpg" alt="" id="taxi_img_3" class="img_troca">
+                    
+                    <img src="img/__3ccaro.jpg" alt="" id="taxi_img_4" class="img_troca">
+                    
+                </div>
+    
+                <input type="number" id="preco_taxi" placeholder="(Preço) para fazer uma guia turistica" class="dados_inseridos">
+                <input type="tel" id="telefone_taxi" placeholder="Telefone" class="dados_inseridos">
+                <input type="text" id="estrela_taxi" class="dados_inseridos" placeholder="Auto avaliação 0-5">
+                
+                <select name="" id="disponivel_taxi" class="dados_inseridos">
+                    <option value="true">Estou disponivel</option>
+                    <option value="false">Não estou disponivel</option>
+                </select>
+
+                <select id="guia_taxi" class="dados_inseridos">
+                    <option value="">Com guia ou sem guia?</option>
+                    <option value="true">Com guia</option>
+                    <option value="false">Sem guia</option>
+                </select>
+            </div>
+            <input type="file" name="" id="busca" class="sair" accept=".png,.jpg,.jpeg,.avif,.webp,image/*">
+    
+            <input type="submit" value="Adicionar" id="adicionar" class="venha">
+        </div>
+    </div>
+
+    <div id="mai">
+        <span class="material-icons" id="folder_sai">folder_off</span>
+        <div id="campo_2">
+        </div>
+    </div>
+
+    <nav id="div_acount"></nav>
+
+    <script>
+        function mostra(id){
+            console.log("12")
+            let apareca=document.querySelectorAll(".apareca")
+            apareca.forEach((e)=>{
+                e.classList.add("desapareca")
+            })
+            let show=document.getElementById(id)
+            console.log(show,id)
+            show.classList.remove("desapareca")
+        }
+
+        document.getElementById("escolha").addEventListener("change",function(){
+            mostra(String(this.value))
+
+            document.querySelectorAll("textarea").forEach((rr)=>{
+                rr.value=""
+            })
+
+            document.querySelectorAll(".numero_").forEach((rx)=>{
+                rx.innerHTML="0/200"
+            })
+
+            let none=""
+            if(this.value=="nada"){
+                none="none"
+            }
+            else{
+                none="block"
+            }
+            document.querySelectorAll(".venha").forEach((e)=>{
+                e.style.display=none
+            })
+        })
+    </script>
+    <script src="script_adicionar.js"></script>
+    <script src="script_basico.js"></script>
+    <script src="script_files.js"></script>
+    <script src="script_checkin.js"></script>
+</body>
+</html>
+
+<!--__3ccaro.jpg-->
+<!--__add__x-->
+<!--__perfil_23x.png-->
+<!--pratos___892__telx.avif-->
