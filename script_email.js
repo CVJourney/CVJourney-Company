@@ -8,7 +8,9 @@ async function trabalhar(){
 }
 
 document.addEventListener("DOMContentLoaded",async function(){
+    document.dispatchEvent(new Event("checkin"))
     let data_= await trabalhar()
+    alert("Visualize aqui todas as solicitações enviadas à sua empresa ou perfil.")
     let data=data_.reverse()
     let div=apanha("pri_campo")
     let date=new Date()
