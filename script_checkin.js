@@ -13,9 +13,14 @@ async function verefica(){
     }
     else if(ver==false && fim!="index.html"){
         location.href='index.html'
+        console.log("eex")
+        indexedDB.deleteDatabase("user_post")
     }
     else if(ver==true && fim=="index.html"){
         location.href='home.html'
+    }
+    else if(fim=="index.html"){
+        indexedDB.deleteDatabase("user_post")
     }
 
 
