@@ -107,7 +107,7 @@ function pega(chaves,img){
     let obj={}
     let obj_img={}
     let feito=true
-    let img_default=["__3ccaro.jpg","__add__x.jpeg","__perfil_23x.png","pratos___892__telx.avif"]
+    let img_default=["x__3ccaro.jpg","x__add__x.jpeg","x__perfil_23x.png","pratos___892__telx.avif"]
     chaves.map((e)=>{
         if(String(apanha(e).value).length>0){
             obj[e]=apanha(e).value
@@ -598,3 +598,4 @@ async function cout(){
 
 
 
+//__3ccaro.jpg
