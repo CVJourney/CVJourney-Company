@@ -12,6 +12,7 @@ body{
     background-image: url("img/fundo\ \(2\).jpeg");
     background-color: maroon;
     background-position: bottom center;
+    background-size: 100% 100%;
     background-attachment: fixed;
     width:100%;
     height:100%;
@@ -74,9 +75,16 @@ header h1{
 
 #escolha{
     width: 90%;
+    display: block;
+    margin: auto;
     margin-top: 20px;
     padding: 10px;
     border-radius: 10px;
+    background-color: white;
+}
+
+select{
+    background-color: white;
 }
 
 #corte{
@@ -461,7 +469,6 @@ label.post_empresa{
     box-shadow: 0 0 10px rgb(66, 66, 66);
     border-radius: 5px;
     background-color: red;
-    background-image: url("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3U5eDQ4dG5naWN1OWl5dmphYjA1YTliMDZreWE4Zml5ZTJteWYzMyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Hbu3HnDaWJTc4/giphy.gif");
     background-size: 100% 100%;
     background-position: center center;
 }
