@@ -80,7 +80,7 @@ function dados_enviar(valor){
     let img=""
     switch (valor) {
         case "guias":
-            chave=["escolha","categoria_guia","nome_guia","estrela_guia","ilha_guia","local_guia","info_guia"]
+            chave=["escolha","categoria_guia","nome_guia","estrela_guia","ilha_guia","local_guia","info_guia","estrela_guia","preco_guia"]
             img=["img_1","img_2","img_3","img_4"]
             break;
     
@@ -90,7 +90,7 @@ function dados_enviar(valor){
             break
         
         case "estadia":
-            chave=["escolha","nome_estadia","local_estadia","ilha_estadia","preco_estadia","info_estadia","reserva_estadia"]
+            chave=["escolha","nome_estadia","local_estadia","ilha_estadia","preco_estadia","info_estadia","reserva_estadia","estrela_estadia"]
             img=["estadia_img_1","estadia_img_2","estadia_img_3","estadia_img_4"]
 
             break
@@ -177,7 +177,7 @@ async function discord(mensagem) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            content: "@everyone nova empresa entrando!!",
+            content: `@everyone ${await cria_cmd(mensagem)}`,
             embeds:[await embed(mensagem)]
         })
     });
@@ -187,6 +187,35 @@ async function discord(mensagem) {
         body:anexo(mensagem)
     })
 }
+
+//criar comandos
+//novo
+async function cria_cmd(data){
+  let d1=data[0]
+  let escolha=d1.escolha
+  console.log(data,escolha)
+  let comando=""
+  let user=await lerPosts()
+  switch(escolha){
+    case "guias":
+      comando=`insert into empresas (nome,estrela,tipo,categoria,imagem,localizacao,ilha,plano,info,empresa,custo) values('${d1.nome_guia}',${d1.estrela_guia},'${d1.categoria_guia}','${d1.categoria_guia}','img1*/*img2*/*img3*/*img4','${d1.local_guia}','${d1.ilha_guia}',3,'${d1.info_guia}','${user[user.length-1].empresa}',${d1.preco_guia})`
+      break
+    case "estadia":
+      comando=`insert into estadia (nome,fotos,local,ilha,custo,plano,reserva,empresa,estrela,info) values('${d1.nome_estadia}','img1*/*img2*/*img3*/*img4','${d1.local_estadia}','${d1.ilha_estadia}',${d1.preco_estadia},3,${d1.reserva_estadia},'${user[user.length-1].empresa}',${d1.estrela_estadia},'${d1.info_estadia}')`
+      break
+    case "restaurante":
+      comando=`insert into restaurante (fotos,nome,plano,info,estrela,pratos,ilha,empresa) values('img1{}img2{}img3{}img4','${d1.nome_restaurante}',3,'${d1.info_restaurante}',${d1.estrela_restaurante},'${d1.prato_1}{}${d1.prato_estrela_1}{}img5{}${d1.prato_pais_1}{}${d1.prato_preco_1}[]${d1.prato_2}{}${d1.prato_estrela_2}{}img6{}${d1.prato_pais_2}{}${d1.prato_preco_2}[]${d1.prato_3}{}${d1.prato_estrela_3}{}img7{}${d1.prato_pais_3}{}${d1.prato_preco_3}[]${d1.prato_4}{}${d1.prato_estrela_4}{}img8{}${d1.prato_pais_4}{}${d1.prato_preco_4}[]${d1.prato_5}{}${d1.prato_estrela_5}{}img9{}${d1.prato_pais_5}{}${d1.prato_preco_5}[]','${d1.ilha_restaurante}','${user[user.length-1].empresa}')`
+      break
+    case "taxi":
+      comando=`insert into (nome,perfil,chapa,marca,modelo,estrela,preco_dia,plano,telefone,disponivel,guia,ilha,empresa) values('${d1.nome_taxi}',img1,'${d1.matricula_taxi}','${d1.marca_taxi}','${d1.modelo_taxi}',${d1.estrela_taxi},${d1.preco_taxi},3,'${d1.telefone_taxi}',${d1.disponivel_taxi},${d1.guia_taxi},'${d1.ilha_taxi}','${user[user.length-1].empresa}')`
+      break
+  }
+
+  return comando
+}
+
+//fim de criar comandos
+
 
 async function embed(data){
     let ob1=data[0]
