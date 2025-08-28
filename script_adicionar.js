@@ -198,16 +198,16 @@ async function cria_cmd(data){
   let user=await lerPosts()
   switch(escolha){
     case "guias":
-      comando=`insert into empresas (nome,estrela,tipo,categoria,imagem,localizacao,ilha,plano,info,empresa,custo) values('${d1.nome_guia}',${d1.estrela_guia},'${d1.categoria_guia}','${d1.categoria_guia}','img1*/*img2*/*img3*/*img4','${d1.local_guia}','${d1.ilha_guia}',3,'${d1.info_guia}','${user[user.length-1].empresa}',${d1.preco_guia})`
+      comando=`insert into empresas (nome,estrela,tipo,categoria,imagem,localizacao,ilha,plano,info,empresa,custo) values('${d1.nome_guia}',${d1.estrela_guia},'${d1.categoria_guia}','${d1.categoria_guia}',img1\\|\\|img2\\|\\|img3\\|\\|img4,'${d1.local_guia}','${d1.ilha_guia}',3,'${d1.info_guia}','${user[user.length-1].empresa}',${d1.preco_guia})`
       break
     case "estadia":
-      comando=`insert into estadia (nome,fotos,local,ilha,custo,plano,reserva,empresa,estrela,info) values('${d1.nome_estadia}','img1*/*img2*/*img3*/*img4','${d1.local_estadia}','${d1.ilha_estadia}',${d1.preco_estadia},3,${d1.reserva_estadia},'${user[user.length-1].empresa}',${d1.estrela_estadia},'${d1.info_estadia}')`
+      comando=`insert into estadia (nome,fotos,local,ilha,custo,plano,reserva,empresa,estrela,info) values('${d1.nome_estadia}','img1\\|\\|img2\\|\\|img3\\|\\|img4','${d1.local_estadia}','${d1.ilha_estadia}',${d1.preco_estadia},3,${d1.reserva_estadia},'${user[user.length-1].empresa}',${d1.estrela_estadia},'${d1.info_estadia}')`
       break
     case "restaurante":
       comando=`insert into restaurante (fotos,nome,plano,info,estrela,pratos,ilha,empresa) values('img1{}img2{}img3{}img4','${d1.nome_restaurante}',3,'${d1.info_restaurante}',${d1.estrela_restaurante},'${d1.prato_1}{}${d1.prato_estrela_1}{}img5{}${d1.prato_pais_1}{}${d1.prato_preco_1}[]${d1.prato_2}{}${d1.prato_estrela_2}{}img6{}${d1.prato_pais_2}{}${d1.prato_preco_2}[]${d1.prato_3}{}${d1.prato_estrela_3}{}img7{}${d1.prato_pais_3}{}${d1.prato_preco_3}[]${d1.prato_4}{}${d1.prato_estrela_4}{}img8{}${d1.prato_pais_4}{}${d1.prato_preco_4}[]${d1.prato_5}{}${d1.prato_estrela_5}{}img9{}${d1.prato_pais_5}{}${d1.prato_preco_5}[]','${d1.ilha_restaurante}','${user[user.length-1].empresa}')`
       break
     case "taxi":
-      comando=`insert into (nome,perfil,chapa,marca,modelo,estrela,preco_dia,plano,telefone,disponivel,guia,ilha,empresa,carro) values('${d1.nome_taxi}',img1,'${d1.matricula_taxi}','${d1.marca_taxi}','${d1.modelo_taxi}',${d1.estrela_taxi},${d1.preco_taxi},3,'${d1.telefone_taxi}',${d1.disponivel_taxi},${d1.guia_taxi},'${d1.ilha_taxi}','${user[user.length-1].empresa}','img2/img3/img4/img5')`
+      comando=`insert into (nome,perfil,chapa,marca,modelo,estrela,preco_dia,plano,telefone,disponivel,guia,ilha,empresa,carro) values('${d1.nome_taxi}',img1,'${d1.matricula_taxi}','${d1.marca_taxi}','${d1.modelo_taxi}',${d1.estrela_taxi},${d1.preco_taxi},3,'${d1.telefone_taxi}',${d1.disponivel_taxi},${d1.guia_taxi},'${d1.ilha_taxi}','${user[user.length-1].empresa}','img2[]img3[]img4[]img5')`
       break
   }
 
