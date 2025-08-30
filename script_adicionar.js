@@ -10,7 +10,7 @@ async function initDB_ids() {
       const db2 = event.target.result;
       // Cria a store 'ids_' se não existir
       if (!db2.objectStoreNames.contains("ids_")) {
-        db2.createObjectStore("ids_", { keyPath: "ids", autoIncrement: true });
+        db2.createObjectStore("ids_");
       }
     };
 
@@ -160,7 +160,6 @@ function pega(chaves,img){
 
 
     if(feito){
-        apanhar(obj)
         return [obj,obj_img]
     }
     else{
@@ -207,7 +206,7 @@ async function cria_cmd(data){
       comando=`insert into restaurante (fotos,nome,plano,info,estrela,pratos,ilha,empresa) values('img1{}img2{}img3{}img4','${d1.nome_restaurante}',3,'${d1.info_restaurante}',${d1.estrela_restaurante},'${d1.prato_1}{}${d1.prato_estrela_1}{}img5{}${d1.prato_pais_1}{}${d1.prato_preco_1}[]${d1.prato_2}{}${d1.prato_estrela_2}{}img6{}${d1.prato_pais_2}{}${d1.prato_preco_2}[]${d1.prato_3}{}${d1.prato_estrela_3}{}img7{}${d1.prato_pais_3}{}${d1.prato_preco_3}[]${d1.prato_4}{}${d1.prato_estrela_4}{}img8{}${d1.prato_pais_4}{}${d1.prato_preco_4}[]${d1.prato_5}{}${d1.prato_estrela_5}{}img9{}${d1.prato_pais_5}{}${d1.prato_preco_5}[]','${d1.ilha_restaurante}','${user[user.length-1].empresa}')`
       break
     case "taxi":
-      comando=`insert into taxi(nome,perfil,chapa,marca,modelo,estrela,preco_dia,plano,telefone,disponivel,guia,ilha,empresa,carro) values('${d1.nome_taxi}',img1,'${d1.matricula_taxi}','${d1.marca_taxi}','${d1.modelo_taxi}',${d1.estrela_taxi},${d1.preco_taxi},3,'${d1.telefone_taxi}',${d1.disponivel_taxi},${d1.guia_taxi},'${d1.ilha_taxi}','${user[user.length-1].empresa}','img2[]img3[]img4[]img5')`
+      comando=`insert into taxi(nome,perfil,chapa,marca,modelo,estrela,preco_dia,plano,telefone,disponivel,guia,ilha,empresa,carro) values('${d1.nome_taxi}','img1','${d1.matricula_taxi}','${d1.marca_taxi}','${d1.modelo_taxi}',${d1.estrela_taxi},${d1.preco_taxi},3,${d1.telefone_taxi},${d1.disponivel_taxi},${d1.guia_taxi},'${d1.ilha_taxi}','${user[user.length-1].empresa}','img2[]img3[]img4[]img5')`
       break
   }
 
@@ -256,14 +255,6 @@ function anexo(data){
         formdata.append("payload_json",JSON.stringify({content:"Imagens"}))
     })
     return formdata
-}
-
-async function apanhar(valores){
-    let escolha=apanha("escolha").value
-    let div=apanha(escolha).innerHTML
-    console.log(div,valores)
-
-    await go_post([div,valores])
 }
 
 async function salvarDados(dados) {
@@ -332,12 +323,26 @@ async function get_post(){
   let valor=[]
   console.log("--",ler)
   if(len<=0){
-    valor.push(0)
+    valor.push({id_empresa:[0,0]})
+    valor.push({id_estadia:[0,0]})
+    valor.push({id_taxi:[0,0]})
+    valor.push({id_restaurante:[0,0]})
   }
   else{
-    ler.map((e)=>{
-      valor.push(e.valor)
-    })
+    ler.map((e) => {
+      valor.push({
+        id_empresa: e.id_empresa.length!=0 ? [e.id_empresa, 0, 0] : [0, 0, 0]
+      });
+      valor.push({
+        id_estadia: e.id_estadia.length!=0 ? [e.id_estadia, 0, 0] : [0, 0, 0]
+      });
+      valor.push({
+        id_taxi: e.id_taxi.length!=0 ? [e.id_taxi, 0, 0] : [0, 0, 0]
+      });
+      valor.push({
+        id_restaurante: e.id_restaurante.length!=0 ? [e.id_restaurante, 0, 0] : [0, 0, 0]
+      });
+    });
   }
   console.log("++",valor)
 
@@ -345,7 +350,7 @@ async function get_post(){
   let len_=post.length
   let empresa=post[len_-1].empresa
 
-  let response=await fetch("https://cvpiramide.vercel.app/data_get",{
+  let response=await fetch("https://cvpiramide.vercel.app/data_encontra",{
     method:"post",
     headers:{
       "content-type":"application/json"
@@ -355,60 +360,317 @@ async function get_post(){
 
   let res=await response.json()
   console.log(res)
-  if(res.length>0){
-    let id=[]
-    res.map((e,i)=>{
-      id.push(e.id)
-      res[i].valor=transformar(e.valor)
-    })
+  await configura(res)
 
-    console.log(id)
-    id.map(async (e)=>{
-      await salvarids(e)
-    })
-    console.log(res)
-
-    await Promise.all(
-      res.map(async (e) => {
-        return await criador_009(e.html, e.valor);
+  let key=Object.keys(res)
+  key.map(async (e)=>{
+    if(res[e].length>0){
+      res[e].map(async (e2)=>{
+        let html_red=html_pronto(e,e2)
+        await salvarDados([e,e2.nome,html_red,e2.id])
+        console.log("*/*",html_red)
       })
-    );
+    }
+  })
+  
+
+}
+/*aqui estamos trabalhando os dados para entregar os posts para os empresarios--inicio*/
+
+async function configura(data){
+  let empresa=data.empresa
+  let estadia=data.estadia
+  let restaurante=data.restaurante
+  let taxi=data.taxi
+
+  let id_e1=[]
+  let id_e2=[]
+  let id_e3=[]
+  let id_e4=[]
+
+  empresa.map((e)=>{
+    id_e1.push(e.id)
+  })
+  estadia.map((e)=>{
+    id_e2.push(e.id)
+  })
+  restaurante.map((e)=>{
+    id_e3.push(e.id)
+  })
+  taxi.map((e)=>{
+    id_e4.push(e.id)
+  })
+
+  await salvarids(id_e1,id_e2,id_e3,id_e4)
+}
+
+
+function html_pronto(esc,data){
+  let html=""
+  switch(esc){
+    case "empresa":
+      let img=String(data.imagem).split("||")
+      html=`            
+      <div id="guias" class="apareca">
+                
+
+                <input type="text" name="" id="nome_guia" placeholder="Digite o nome do lugar ou espaço" class="dados_inseridos" value='${data.nome}'>
+                
+                <select name="" id="categoria_guia" class="dados_inseridos">
+                    <option value="${data.tipo}">${data.tipo}</option>
+                    <option value="praias" class="catego">Praias</option>
+                    <option value="cultura" class="catego">Cultura</option>
+                    <option value="trilhas" class="catego">Trilhas</option>
+                    <option value="aquaticos" class="catego">Aquáticos</option>
+                    <option value="fauna_marinha" class="catego">Fauna</option>
+                    <option value="gastronomia" class="catego">Gastronomia</option>
+                    <option value="historico" class="catego">Histórico</option>
+                    <option value="artesanato" class="catego">Artesanato</option>
+                    <option value="vulcao" class="catego">Vulcão</option>
+                </select>
+
+
+                <div id="imagens_guia_">
+                    <img src="${img[0]}" alt="" id="img_1" class="img_troca">
+                    
+                    <img src="${img[1]}" alt="" id="img_2" class="img_troca">
+                    
+                    <img src="${img[2]}" alt="" id="img_3" class="img_troca">
+                    
+                    <img src="${img[3]}" alt="" id="img_4" class="img_troca">
+                    
+                </div>
+                <select name="" id="ilha_guia" class="dados_inseridos">
+                    <option value="">Selecione a ilha da propriedade</option>
+                    <option value="${data.ilha}">${data.ilha}</option>
+                    <option value="são vicente">São vicente</option>
+                    <option value="sal">Sal</option>
+                    <option value="maio">Maio</option>
+                    <option value="boa vista">Boa vista</option>
+                    <option value="santo antão">Santo Antão</option>
+                    <option value="são nicolau">São Nicolau</option>
+                    <option value="brava">Brava</option>
+                    <option value="fogo">Fogo</option>
+                </select>
+                <input type="text" id="local_guia" placeholder="Digite a cidade onde esta situado" class="dados_inseridos" value='${data.localizacao}'>
+                <input type="number" class="dados_inseridos" placeholder="Digite o preço" id="preco_guia" value='${data.custo}'>
+                <input type="number" class="dados_inseridos" placeholder="Digite o nomero de estrela da localidade" id="estrela_guia" value='${data.estrela}'>
+                <textarea name="" id="info_guia" placeholder="Digite alguma informação sobre" rows="10" maxlength="200">${data.info}
+                </textarea>
+                <h6 class="numero_">0/200</h6>
+    
+            </div>`
+      break
+
+    case "estadia":
+      let foto=String(data.fotos).split("||")
+      html=`            
+      <div id="estadia" class="apareca">
+                <input type="text" id="nome_estadia" placeholder="Digite o nome do lugar" class="dados_inseridos" value='${data.nome}'>
+                <input type="number" id="estrela_estadia" placeholder="Digite o numero de estrela" class="dados_inseridos" value='${data.estrela}'>
+    
+                <div id="imagens_estadia_">
+                    <img src="${foto[0]}" alt="" id="estadia_img_1" class="img_troca">
+                    
+                    <img src="${foto[1]}" alt="" id="estadia_img_2" class="img_troca">
+                    
+                    <img src="${foto[2]}" alt="" id="estadia_img_3" class="img_troca">
+                    
+                    <img src="${foto[3]}" alt="" id="estadia_img_4" class="img_troca">
+                    
+                </div>
+    
+                <input type="text" id="local_estadia" placeholder="Digite a localização" class="dados_inseridos" value='${data.local}'>
+    
+                <select id="ilha_estadia" class="dados_inseridos">
+                    <option value="${data.ilha}">${data.ilha}</option>
+                    <option value="santiago">Santiago</option>
+                    <option value="sao_vicente">São Vicente</option>
+                    <option value="sal">Sal</option>
+                    <option value="maio">Maio</option>
+                    <option value="boa_vista">Boa Vista</option>
+                    <option value="santo_antao">Santo Antão</option>
+                    <option value="sao_nicolau">São Nicolau</option>
+                    <option value="brava">Brava</option>
+                    <option value="fogo">Fogo</option>
+                </select>
+
+                <select name="" id="reserva_estadia" class="dados_inseridos">
+                ${data.reserva==true?`
+                  <option value="true">Reservado</option>
+                  <option value="false">Disponivel</option>
+                  `
+                  :`
+                  <option value="false">Disponivel</option>
+                  <option value="true">Reservado</option>
+                  `}
+                </select>
+    
+                <input type="number" id="preco_estadia" placeholder="Preço da reserva por mês (ECV)" class="dados_inseridos" value='${data.custo}'>
+    
+                <textarea id="info_estadia" placeholder="Digite informações sobre a estadia" rows="6" maxlength="200">${data.info}</textarea>
+                <h6 class="numero_">0/200</h6>
+            </div>`
+      break
+
+    case "restaurante":
+      let fotos=String(data.fotos).split("{}")
+      let pr=String(data.pratos).split("[]")
+      let pr1=pr[0].split("{}")
+      let pr2=pr[1].split("{}")
+      let pr3=pr[2].split("{}")
+      let pr4=pr[3].split("{}")
+      let pr5=pr[4].split("{}")
+      html=`            
+      <div id="restaurante" class="apareca">
+                <input type="text" id="nome_restaurante" placeholder="Digite o nome do restaurante" class="dados_inseridos" value='${data.nome}'> 
+
+                <div id="imagens_restaurante_">
+                    <img src="${fotos[0]}" alt="" id="rest_img_1" class="img_troca">
+                    
+                    <img src="${fotos[1]}" alt="" id="rest_img_2" class="img_troca">
+                    
+                    <img src="${fotos[2]}" alt="" id="rest_img_3" class="img_troca">
+                    
+                    <img src="${fotos[3]}" alt="" id="rest_img_4" class="img_troca">
+                    
+                </div>
+    
+
+                <input type="number" name="" id="estrela_restaurante" class="dados_inseridos" placeholder="Estrelas do restaurante 0-5" max="5" min="0" value='${data.estrela}'>
+    
+                <textarea id="info_restaurante" placeholder="Digite informações sobre o restaurante" rows="6" maxlength="200">${data.info}</textarea>
+                <h6 class="numero_">0/200</h6>
+    
+    
+                <div id="p_1" class="pratos_info">
+                    <input type="text" id="prato_1" placeholder="Nome do prato" value='${pr1[0]}'>
+                    <input type="number" id="prato_preco_1" placeholder="Preço do prato" value='${pr1[1]}'>
+                    <input type="text" id="prato_pais_1" placeholder="País do prato" value='${pr1[3]}'>
+                    <input type="number" id="prato_estrela_1" placeholder="Estrela (0-5)" value='${pr1[4]}'>
+                </div>
+    
+                <div id="p_2" class="pratos_info">
+                    <input type="text" id="prato_2" placeholder="Nome do prato" value='${pr2[0]}'>
+                    <input type="number" id="prato_preco_2" placeholder="Preço do prato" value='${pr2[1]}'>
+                    <input type="text" id="prato_pais_2" placeholder="País do prato" value='${pr2[3]}'>
+                    <input type="number" id="prato_estrela_2" placeholder="Estrela (0-5)" value='${pr2[4]}'>
+                </div>
+    
+                <div id="p_3" class="pratos_info">
+                    <input type="text" id="prato_3" placeholder="Nome do prato" value='${pr3[0]}'>
+                    <input type="number" id="prato_preco_3" placeholder="Preço do prato" value='${pr3[1]}'>
+                    <input type="text" id="prato_pais_3" placeholder="País do prato" value='${pr3[3]}'>
+                    <input type="number" id="prato_estrela_3" placeholder="Estrela (0-5)" value='${pr3[4]}'>
+                </div>
+    
+                <div id="p_4" class="pratos_info">
+                    <input type="text" id="prato_4" placeholder="Nome do prato" value='${pr4[0]}'>
+                    <input type="number" id="prato_preco_4" placeholder="Preço do prato" value='${pr4[1]}'>
+                    <input type="text" id="prato_pais_4" placeholder="País do prato" value='${pr4[3]}'>
+                    <input type="number" id="prato_estrela_4" placeholder="Estrela (0-5)" value='${pr4[4]}'>
+                </div>
+    
+                <div id="p_5" class="pratos_info">
+                    <input type="text" id="prato_5" placeholder="Nome do prato" value='${pr5[0]}'>
+                    <input type="number" id="prato_preco_5" placeholder="Preço do prato" value='${pr5[1]}'>
+                    <input type="text" id="prato_pais_5" placeholder="País do prato" value='${pr5[3]}'>
+                    <input type="number" id="prato_estrela_5" placeholder="Estrela (0-5)" value='${pr5[4]}'>
+                </div>
+                
+                <div id="prato_imagem_">
+                    <h3 id="titulo_prato">Inclua a foto dos 5 pratos típicos para encantar os turistas.</h3>
+                    <img src="${pr1[2]}" alt="" id="prato_img_1" class="pratos img_troca">
+                    <img src="${pr2[2]}" alt="" id="prato_img_2" class="pratos img_troca">
+                    <img src="${pr3[2]}" alt="" id="prato_img_3" class="pratos img_troca">
+                    <img src="${pr4[2]}" alt="" id="prato_img_4" class="pratos img_troca">
+                    <img src="${pr5[2]}" alt="" id="prato_img_5" class="pratos img_troca">
+                    
+                </div>
+    
+                <select id="ilha_restaurante" class="dados_inseridos">
+                    <option value="${data.ilha}">${data.ilha}</option>
+                    <option value="santiago">Santiago</option>
+                    <option value="sao_vicente">São Vicente</option>
+                    <option value="sal">Sal</option>
+                    <option value="maio">Maio</option>
+                    <option value="boa_vista">Boa Vista</option>
+                    <option value="santo_antao">Santo Antão</option>
+                    <option value="sao_nicolau">São Nicolau</option>
+                    <option value="brava">Brava</option>
+                    <option value="fogo">Fogo</option>
+                </select>
+            </div>`
+      break
+
+    case "taxi":
+      let carro=String(data.carro).split("[]")
+      html=`            
+      <div id="taxi" class="apareca">
+                <select id="ilha_taxi" class="dados_inseridos">
+                    <option value="${data.ilha}">${data.ilha}</option>
+                    <option value="santiago">Santiago</option>
+                    <option value="sao_vicente">São Vicente</option>
+                    <option value="sal">Sal</option>
+                    <option value="maio">Maio</option>
+                    <option value="boa_vista">Boa Vista</option>
+                    <option value="santo_antao">Santo Antão</option>
+                    <option value="sao_nicolau">São Nicolau</option>
+                    <option value="brava">Brava</option>
+                    <option value="fogo">Fogo</option>
+                </select>
+
+                <input type="text" id="nome_taxi" placeholder="Nome do motorista" class="dados_inseridos" value='${data.nome}'>  
+
+                <div id="foto_perfil_taxi_">
+                    <img src="${data.perfil}" alt="" id="taxi_img_perfil" style="border: none;" class="img_troca">
+                    
+                </div>
+    
+                <input type="text" id="matricula_taxi" placeholder="Chapa do carro" class="dados_inseridos" value='${data.chapa}'>
+                <input type="text" id="marca_taxi" placeholder="Marca do carro" class="dados_inseridos" value='${data.marca}'>
+                <input type="text" id="modelo_taxi" placeholder="Modelo do carro" class="dados_inseridos" value='${data.modelo}'>
+    
+                <div id="imagens_taxi_">
+                    <h4 style="display: block;">4 lados diferentes</h4>
+                    <img src="${carro[0]}" alt="" id="taxi_img_1" class="img_troca">
+                    
+                    <img src="${carro[1]}" alt="" id="taxi_img_2" class="img_troca">
+                    
+                    <img src="${carro[2]}" alt="" id="taxi_img_3" class="img_troca">
+                    
+                    <img src="${carro[3]}" alt="" id="taxi_img_4" class="img_troca">
+                    
+                </div>
+    
+                <input type="number" id="preco_taxi" placeholder="(Preço) para fazer uma guia turistica" class="dados_inseridos" value='${data.preco_dia}'>
+                <input type="tel" id="telefone_taxi" placeholder="Telefone" class="dados_inseridos" value='${data.telefone}'>
+                <input type="text" id="estrela_taxi" class="dados_inseridos" placeholder="Auto avaliação 0-5" value='${data.estrela}'>
+                
+                <select name="" id="disponivel_taxi" class="dados_inseridos">
+                    ${data.disponivel==true?`                 <option value="true">Estou disponivel</option>
+                    <option value="false">Não estou disponivel</option>
+                    `:`                    
+                    <option value="false">Não estou disponivel</option>
+                    <option value="true">Estou disponivel</option>
+                    `}
+                </select>
+
+                <select id="guia_taxi" class="dados_inseridos">
+                      ${data.guia==true?`                   <option value="true">Com guia</option>
+                    <option value="false">Sem guia</option>`:`                    
+                    <option value="false">Sem guia</option>
+                    <option value="true">Com guia</option>
+                    `}
+
+                </select>
+            </div>`
+      break
   }
-}
-
-function transformar(valor){
-  let sep=String(valor).split("[]")
-  let obj={}
-  sep.map((e)=>{
-    let sep2=e.split("{}")
-    obj[sep2[0]]=sep2[1]
-  })
-
-  return obj
-}
-
-async function criador_009(html,valor){
-  let obj=[html,valor]
-  await salvarDados(obj)
-
+  return html
 }
 
 
-
-
-async function go_post(data){
-  let post=await lerPosts()
-  let len_=post.length
-  let empresa=post[len_-1].empresa
-
-  let response=await fetch("https://cvpiramide.vercel.app/data_post",{
-    method:"post",
-    headers:{
-      "content-type":"application/json"
-    },
-    body:JSON.stringify({data:data,empresa:empresa})
-  })
-}
 
 
 async function lerPosts() {
@@ -430,7 +692,7 @@ async function lerPosts() {
   });
 }
 
-async function salvarids(valor) {
+async function salvarids(v_empresa, v_estadia, v_restaurante, v_taxi) {
   if (!db2) {
     db2 = await initDB_ids();
   }
@@ -439,17 +701,52 @@ async function salvarids(valor) {
     const tx = db2.transaction("ids_", "readwrite");
     const store = tx.objectStore("ids_");
 
-    const dado = { valor: valor }; // o campo 'ids' é a chave, 'valor' é o conteúdo
-    const request = store.add(dado);
+    // chave fixa, sempre o mesmo registro
+    const chave = 1;
 
-    request.onsuccess = function () {
-      console.log("Dado salvo com sucesso:", dado);
-      resolve(dado);
-    };
+    const getRequest = store.get(chave);
 
-    request.onerror = function (event) {
-      console.error("Erro ao salvar dado:", event.target.error);
-      reject(event.target.error);
+    getRequest.onsuccess = function () {
+      let antigo = getRequest.result;
+
+      let dado;
+      if (antigo) {
+        dado = {
+          id: chave,
+          id_empresa: [...new Set([...(antigo.id_empresa || []), ...v_empresa])],
+          id_estadia: [...new Set([...(antigo.id_estadia || []), ...v_estadia])],
+          id_restaurante: [...new Set([...(antigo.id_restaurante || []), ...v_restaurante])],
+          id_taxi: [...new Set([...(antigo.id_taxi || []), ...v_taxi])]
+        };
+      } else {
+        dado = {
+          id: chave,
+          id_empresa: v_empresa,
+          id_estadia: v_estadia,
+          id_restaurante: v_restaurante,
+          id_taxi: v_taxi
+        };
+      }
+
+      let requestUpdate;
+
+      // ⚡ Se a store foi criada com keyPath
+      if (store.keyPath) {
+        requestUpdate = store.put(dado);
+      } else {
+        // ⚡ Se a store não tem keyPath, passa a chave separada
+        requestUpdate = store.put(dado, chave);
+      }
+
+      requestUpdate.onsuccess = function () {
+        console.log("Registro único atualizado com sucesso:", dado);
+        resolve(dado);
+      };
+
+      requestUpdate.onerror = function (event) {
+        console.error("Erro ao salvar dado:", event.target.error);
+        reject(event.target.error);
+      };
     };
   });
 }
@@ -628,3 +925,4 @@ async function cout(){
 
 
 //__3ccaro.jpg
+//https://cvpiramide.vercel.app

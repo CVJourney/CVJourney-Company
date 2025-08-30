@@ -61,8 +61,6 @@ apanha("next").addEventListener("click",async function(){
                 let req= await fetch_(obj)
                 validar(req)
                 console.log("ex")
-
-                alert("Dados em analise")
             }
             else{
                 alert("Todos os campos não estão bem preenchidos")
@@ -172,7 +170,7 @@ document.addEventListener("DOMContentLoaded",async function(){
 
 // Exemplo de uso:
 
-
+//dados em analise
 
 
 //https://cvpiramide.vercel.app/

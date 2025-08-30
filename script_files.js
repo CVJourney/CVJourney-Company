@@ -54,8 +54,7 @@ apanha("folder").addEventListener("click",async function() {
     div.className="titulos"
     
     while(len>=0){
-      let key=Object.keys(dados[len].valores[1])
-      let nome=dados[len].valores[1][key[1]]
+      let nome=dados[len].valores[1]
       let h3=document.createElement("h3")
       h3.innerText=`${nome}`
       h3.className="titulo_file"
@@ -99,4 +98,3 @@ function chekindDB(dbName) {
     });
 }
 
-//http://localhost:7000/

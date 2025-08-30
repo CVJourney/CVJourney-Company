@@ -359,11 +359,11 @@ textarea {
 }
 
 .btn_update{
-    padding: 6px 10px;
+    padding: 9px 10px;
     border-radius: 10px;
     border: solid 1px ;
     text-align: center;
-    width: 40%;
+    width: 85%;
     color: white;
 
 }
@@ -483,4 +483,4 @@ label.post_empresa{
 
 }
 
-/*venha*/
+/*btn_update*/
