@@ -189,32 +189,43 @@ async function discord(mensagem) {
 
 //criar comandos
 //novo
-async function cria_cmd(data){
-  let d1=data[0]
-  let escolha=d1.escolha
-  console.log(data,escolha)
-  let comando=""
-  let user=await lerPosts()
-  switch(escolha){
+async function cria_cmd(data) {
+  let d1 = data[0];
+  let escolha = d1.escolha;
+  console.log("/***jú***/",data, escolha);
+
+  let comando = "";
+  let user = await lerPosts();
+
+  // Supondo que d1.files seja o objeto com todas as imagens que você quer enviar
+  // Ex.: { img1: File, img2: File, img3: File, ... }
+  let imagens = await enviarImagensImgBB(data[1]); // retorna array de URLs
+  // Agora imagens[0] = img1, imagens[1] = img2, etc.
+
+  switch (escolha) {
     case "guias":
-      comando=`insert into empresas (nome,estrela,tipo,categoria,imagem,localizacao,ilha,plano,info,empresa,custo) values('${d1.nome_guia}',${d1.estrela_guia},'${d1.categoria_guia}','${d1.categoria_guia}',img1||img2||img3||img4,'${d1.local_guia}','${d1.ilha_guia}',3,'${d1.info_guia}','${user[user.length-1].empresa}',${d1.preco_guia})`
-      break
+      comando = `insert into empresas (nome,estrela,tipo,categoria,imagem,localizacao,ilha,plano,info,empresa,custo) values('${d1.nome_guia}',${d1.estrela_guia},'${d1.categoria_guia}','${d1.categoria_guia}','${imagens.join("||")}','${d1.local_guia}','${d1.ilha_guia}',3,'${d1.info_guia}','${user[user.length-1].empresa}',${d1.preco_guia})`;
+      break;
+
     case "estadia":
-      comando=`insert into estadia (nome,fotos,local,ilha,custo,plano,reserva,empresa,estrela,info) values('${d1.nome_estadia}','img1||img2||img3||img4','${d1.local_estadia}','${d1.ilha_estadia}',${d1.preco_estadia},3,${d1.reserva_estadia},'${user[user.length-1].empresa}',${d1.estrela_estadia},'${d1.info_estadia}')`
-      break
+      comando = `insert into estadia (nome,fotos,local,ilha,custo,plano,reserva,empresa,estrela,info) values('${d1.nome_estadia}','${imagens.join("||")}','${d1.local_estadia}','${d1.ilha_estadia}',${d1.preco_estadia},3,${d1.reserva_estadia},'${user[user.length-1].empresa}',${d1.estrela_estadia},'${d1.info_estadia}')`;
+      break;
+
     case "restaurante":
-      comando=`insert into restaurante (fotos,nome,plano,info,estrela,pratos,ilha,empresa) values('img1{}img2{}img3{}img4','${d1.nome_restaurante}',3,'${d1.info_restaurante}',${d1.estrela_restaurante},'${d1.prato_1}{}${d1.prato_estrela_1}{}img5{}${d1.prato_pais_1}{}${d1.prato_preco_1}[]${d1.prato_2}{}${d1.prato_estrela_2}{}img6{}${d1.prato_pais_2}{}${d1.prato_preco_2}[]${d1.prato_3}{}${d1.prato_estrela_3}{}img7{}${d1.prato_pais_3}{}${d1.prato_preco_3}[]${d1.prato_4}{}${d1.prato_estrela_4}{}img8{}${d1.prato_pais_4}{}${d1.prato_preco_4}[]${d1.prato_5}{}${d1.prato_estrela_5}{}img9{}${d1.prato_pais_5}{}${d1.prato_preco_5}[]','${d1.ilha_restaurante}','${user[user.length-1].empresa}')`
-      break
+      // aqui você pode mapear os pratos e trocar img5..img9 pelas URLs corretas do array
+      comando = `insert into restaurante (fotos,nome,plano,info,estrela,pratos,ilha,empresa) values('${imagens.slice(0,4).join("{}")}','${d1.nome_restaurante}',3,'${d1.info_restaurante}',${d1.estrela_restaurante},'${d1.pratos.map((p,i)=> p+"{}"+imagens[4+i]+"{}"+d1.preco[i]).join("[]")}','${d1.ilha_restaurante}','${user[user.length-1].empresa}')`;
+      break;
+
     case "taxi":
-      comando=`insert into taxi(nome,perfil,chapa,marca,modelo,estrela,preco_dia,plano,telefone,disponivel,guia,ilha,empresa,carro) values('${d1.nome_taxi}','img1','${d1.matricula_taxi}','${d1.marca_taxi}','${d1.modelo_taxi}',${d1.estrela_taxi},${d1.preco_taxi},3,${d1.telefone_taxi},${d1.disponivel_taxi},${d1.guia_taxi},'${d1.ilha_taxi}','${user[user.length-1].empresa}','img2[]img3[]img4[]img5')`
-      break
+      comando = `insert into taxi(nome,perfil,chapa,marca,modelo,estrela,preco_dia,plano,telefone,disponivel,guia,ilha,empresa,carro) values('${d1.nome_taxi}','${imagens[0]}','${d1.matricula_taxi}','${d1.marca_taxi}','${d1.modelo_taxi}',${d1.estrela_taxi},${d1.preco_taxi},3,${d1.telefone_taxi},${d1.disponivel_taxi},${d1.guia_taxi},'${d1.ilha_taxi}','${user[user.length-1].empresa}','${imagens.slice(1,5).join("[]")}')`;
+      break;
   }
 
-  return comando
+  return comando;
 }
 
-//fim de criar comandos
 
+//fim de criar comandos
 
 async function embed(data){
     let ob1=data[0]
@@ -256,6 +267,84 @@ function anexo(data){
     })
     return formdata
 }
+
+
+
+const apiKey = "d5d509ea35944f0fd6bb90ef35c22033"; // substitua aqui
+
+async function enviarImagensImgBB(ob2) {
+  const urls = [];
+  const keys = Object.keys(ob2);
+
+  for (let i = 0; i < keys.length; i++) {
+    const file = ob2[keys[i]];
+    const base64 = await fileToBase64(file);
+
+    if (!base64) {
+      console.error("Arquivo inválido:", file);
+      urls.push(null);
+      continue;
+    }
+
+    const formData = new FormData();
+    formData.append("key", apiKey);
+    formData.append("image", base64); // apenas base64 puro
+
+    try {
+      const res = await fetch("https://api.imgbb.com/1/upload", {
+        method: "POST",
+        body: formData
+      });
+
+      const json = await res.json();
+
+      if (!json.success) {
+        console.error("Erro na API ImgBB:", json);
+        urls.push(null);
+      } else {
+        urls.push(json.data.display_url);
+      }
+    } catch (err) {
+      console.error("Erro ao enviar imagem:", err);
+      urls.push(null);
+    }
+  }
+
+  return urls;
+}
+
+// File → base64 puro
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    if (!file) return resolve(null);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const result = reader.result;
+      // Verifica se é string válida
+      if (typeof result === "string" && result.includes(",")) {
+        resolve(result.split(",")[1]); // remove data:image/png;base64,
+      } else {
+        resolve(null);
+      }
+    };
+    reader.onerror = reject;
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 async function salvarDados(dados) {
   // Exemplo: dados = ["valor1", "valor2"]
