@@ -58,13 +58,24 @@ function mostrar(data, id) {
 
     let valores = data[id].valores[2] || ""; // HTML com imagens
     id_t=data[id].valores[3]
+    let x=document.createElement("aside")
+    x.classList.add("ids_")
+    x.id=id_t
+    document.body.appendChild(x)
+    
     id_div=data[id].id
+    let y=document.createElement("aside")
+    y.id=id_div
+    y.classList.add("novas")
+    document.body.appendChild(y)
+
     company=data[id].valores[0]
     const criado = document.getElementById("criado");
     criado.id="criado_2"
     if (!criado) return;
 
     criado.innerHTML = valores;
+    document.dispatchEvent(new Event("obrigado"))
 }
 
 document.getElementById("folder_sai").addEventListener("click", () => {
@@ -178,3 +189,4 @@ function enviarMensagemDiscord(msg) {
 
 //desapareca
 //https://cvpiramide.vercel.app
+//http://localhost
