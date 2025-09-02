@@ -471,7 +471,7 @@ label.post_empresa{
     margin: 10px;
     box-shadow: 0 0 10px rgb(66, 66, 66);
     border-radius: 5px;
-    background-color: red;
+    background-color: rgb(241, 145, 145);
     background-size: 100% 100%;
     background-position: center center;
 }
@@ -499,5 +499,13 @@ label.post_empresa{
     width: 100%;
     background-color: transparent;
     margin: 5px;
+}
+
+#email_staff{
+    padding: 10px;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    box-shadow: 0 0 10px black;
 }
 /*btn_update atualiza*/
