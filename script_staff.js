@@ -20,7 +20,6 @@ async function pegar(){
     await trabalhar(res)
 }
 
-
 async function trabalhar(data){
     data=data.reverse()
     data.map((e)=>{

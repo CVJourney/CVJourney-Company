@@ -844,6 +844,7 @@ async function salvarids(v_empresa, v_estadia, v_restaurante, v_taxi) {
 
 document.addEventListener("DOMContentLoaded",async function(){
   document.dispatchEvent(new Event("checkin"))
+  document.dispatchEvent(new Event("msg"))
   await get_post()
   await cout()
 })
@@ -1012,8 +1013,39 @@ async function cout(){
   }
 }
 
+document.addEventListener("msg",async function(){
+    await msg()
+})
 
+async function msg(){
+    let ler=await lerPosts()
+    let len=ler.length
+    let empresa=ler[len-1].empresa
+    let response=await fetch("https://cvpiramide.vercel.app/data_conta_2",{
+        method:"post",
+        headers:{
+            "content-type":"application/json"
+        },
+        body:JSON.stringify({empresa:empresa})
+    })
+    let res=await response.json()
+    console.log("iiii ",res)
+    let count=res[0].count
+    console.log(count)
+    let lc=localStorage.getItem("notifx")
+    console.log(lc)
+    let num=Number(lc)
+    if(lc==null){
+      alert(`Oi! Você tem ${count} nova(s) mensagen(s) sobre os seus últimos posts. Confira agora no ícone do e-mail preto 📩.`)
+      localStorage.setItem("notifx",count)
+    }
+    else if(lc<count){
+      alert(`Oi! Você tem ${count-lc} novas mensagens sobre os seus últimos posts. Confira agora no ícone do e-mail preto 📩.`)
+      localStorage.setItem("notifx",count)
+    }
+}
 
 
 //__3ccaro.jpg
 //https://cvpiramide.vercel.app
+//domloa
