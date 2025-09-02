@@ -213,7 +213,9 @@ async function cria_cmd(data) {
 
     case "restaurante":
       // aqui você pode mapear os pratos e trocar img5..img9 pelas URLs corretas do array
-      comando = `insert into restaurante (fotos,nome,plano,info,estrela,pratos,ilha,empresa) values('${imagens.slice(0,4).join("{}")}','${d1.nome_restaurante}',3,'${d1.info_restaurante}',${d1.estrela_restaurante},'${d1.pratos.map((p,i)=> p+"{}"+imagens[4+i]+"{}"+d1.preco[i]).join("[]")}','${d1.ilha_restaurante}','${user[user.length-1].empresa}')`;
+      console.log(d1.pratos)
+      comando = `insert into restaurante (fotos,nome,plano,info,estrela,pratos,ilha,empresa) values('${imagens.slice(0,4).join("{}")}','${d1.nome_restaurante}',3,'${d1.info_restaurante}',${d1.estrela_restaurante},'${d1.prato_1}{}${d1.prato_estrela_1}{}${imagens[4]}{}${d1.prato_pais_1}{}${d1.prato_preco_1}[]${d1.prato_2}{}${d1.prato_estrela_2}{}${imagens[5]}{}${d1.prato_pais_2}{}${d1.prato_preco_2}[]${d1.prato_3}{}${d1.prato_estrela_3}{}${imagens[6]}{}${d1.prato_pais_3}{}${d1.prato_preco_3}[]${d1.prato_4}{}${d1.prato_estrela_4}{}${imagens[7]}{}${d1.prato_pais_4}{}${d1.prato_preco_4}[]${d1.prato_5}{}${d1.prato_estrela_5}{}${imagens[8]}{}${d1.prato_pais_5}{}${d1.prato_preco_5}[]','${d1.ilha_restaurante}','${user[user.length-1].empresa}')`;
+      //${d1.pratos.map((p,i)=> p+"{}"+imagens[4+i]+"{}"+d1.preco[i]).join("[]")}
       break;
 
     case "taxi":
