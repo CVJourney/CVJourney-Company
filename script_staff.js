@@ -1,6 +1,7 @@
 let db=null
 
 document.addEventListener("DOMContentLoaded",async function(){
+    alert("Aqui você vê as atualizações sobre os seus posts (mensagens que enviamos para informar o resultado).")
     await pegar()
 })
 
