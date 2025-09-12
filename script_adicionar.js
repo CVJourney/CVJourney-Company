@@ -204,22 +204,22 @@ async function cria_cmd(data) {
 
   switch (escolha) {
     case "guias":
-      comando = `insert into empresas (nome,estrela,tipo,categoria,imagem,localizacao,ilha,plano,info,empresa,custo) values('${d1.nome_guia}',${d1.estrela_guia},'${d1.categoria_guia}','${d1.categoria_guia}','${imagens.join("||")}','${d1.local_guia}','${d1.ilha_guia}',3,'${d1.info_guia}','${user[user.length-1].empresa}',${d1.preco_guia})`;
+      comando = `insert into empresas (nome,estrela,tipo,categoria,imagem,localizacao,ilha,plano,info,empresa,custo) values('${d1.nome_guia}',${d1.estrela_guia},'${d1.categoria_guia}','${d1.categoria_guia}','${imagens.join("||")}','${d1.local_guia}','${d1.ilha_guia}',${Number(user[user.length-1].plano)},'${d1.info_guia}','${user[user.length-1].empresa}',${d1.preco_guia})`;
       break;
 
     case "estadia":
-      comando = `insert into estadia (nome,fotos,local,ilha,custo,plano,reserva,empresa,estrela,info) values('${d1.nome_estadia}','${imagens.join("||")}','${d1.local_estadia}','${d1.ilha_estadia}',${d1.preco_estadia},3,${d1.reserva_estadia},'${user[user.length-1].empresa}',${d1.estrela_estadia},'${d1.info_estadia}')`;
+      comando = `insert into estadia (nome,fotos,local,ilha,custo,plano,reserva,empresa,estrela,info) values('${d1.nome_estadia}','${imagens.join("||")}','${d1.local_estadia}','${d1.ilha_estadia}',${d1.preco_estadia},${Number(user[user.length-1].plano)},${d1.reserva_estadia},'${user[user.length-1].empresa}',${d1.estrela_estadia},'${d1.info_estadia}')`;
       break;
 
     case "restaurante":
       // aqui você pode mapear os pratos e trocar img5..img9 pelas URLs corretas do array
       console.log(d1.pratos)
-      comando = `insert into restaurante (fotos,nome,plano,info,estrela,pratos,ilha,empresa) values('${imagens.slice(0,4).join("{}")}','${d1.nome_restaurante}',3,'${d1.info_restaurante}',${d1.estrela_restaurante},'${d1.prato_1}{}${d1.prato_estrela_1}{}${imagens[4]}{}${d1.prato_pais_1}{}${d1.prato_preco_1}[]${d1.prato_2}{}${d1.prato_estrela_2}{}${imagens[5]}{}${d1.prato_pais_2}{}${d1.prato_preco_2}[]${d1.prato_3}{}${d1.prato_estrela_3}{}${imagens[6]}{}${d1.prato_pais_3}{}${d1.prato_preco_3}[]${d1.prato_4}{}${d1.prato_estrela_4}{}${imagens[7]}{}${d1.prato_pais_4}{}${d1.prato_preco_4}[]${d1.prato_5}{}${d1.prato_estrela_5}{}${imagens[8]}{}${d1.prato_pais_5}{}${d1.prato_preco_5}[]','${d1.ilha_restaurante}','${user[user.length-1].empresa}')`;
+      comando = `insert into restaurante (fotos,nome,plano,info,estrela,pratos,ilha,empresa) values('${imagens.slice(0,4).join("{}")}','${d1.nome_restaurante}',${Number(user[user.length-1].plano)},'${d1.info_restaurante}',${d1.estrela_restaurante},'${d1.prato_1}{}${d1.prato_estrela_1}{}${imagens[4]}{}${d1.prato_pais_1}{}${d1.prato_preco_1}[]${d1.prato_2}{}${d1.prato_estrela_2}{}${imagens[5]}{}${d1.prato_pais_2}{}${d1.prato_preco_2}[]${d1.prato_3}{}${d1.prato_estrela_3}{}${imagens[6]}{}${d1.prato_pais_3}{}${d1.prato_preco_3}[]${d1.prato_4}{}${d1.prato_estrela_4}{}${imagens[7]}{}${d1.prato_pais_4}{}${d1.prato_preco_4}[]${d1.prato_5}{}${d1.prato_estrela_5}{}${imagens[8]}{}${d1.prato_pais_5}{}${d1.prato_preco_5}[]','${d1.ilha_restaurante}','${user[user.length-1].empresa}')`;
       //${d1.pratos.map((p,i)=> p+"{}"+imagens[4+i]+"{}"+d1.preco[i]).join("[]")}
       break;
 
     case "taxi":
-      comando = `insert into taxi(nome,perfil,chapa,marca,modelo,estrela,preco_dia,plano,telefone,disponivel,guia,ilha,empresa,carro) values('${d1.nome_taxi}','${imagens[0]}','${d1.matricula_taxi}','${d1.marca_taxi}','${d1.modelo_taxi}',${d1.estrela_taxi},${d1.preco_taxi},3,${d1.telefone_taxi},${d1.disponivel_taxi},${d1.guia_taxi},'${d1.ilha_taxi}','${user[user.length-1].empresa}','${imagens.slice(1,5).join("[]")}')`;
+      comando = `insert into taxi(nome,perfil,chapa,marca,modelo,estrela,preco_dia,plano,telefone,disponivel,guia,ilha,empresa,carro) values('${d1.nome_taxi}','${imagens[0]}','${d1.matricula_taxi}','${d1.marca_taxi}','${d1.modelo_taxi}',${d1.estrela_taxi},${d1.preco_taxi},${Number(user[user.length-1].plano)},${d1.telefone_taxi},${d1.disponivel_taxi},${d1.guia_taxi},'${d1.ilha_taxi}','${user[user.length-1].empresa}','${imagens.slice(1,5).join("[]")}')`;
       break;
   }
 
@@ -845,6 +845,8 @@ async function salvarids(v_empresa, v_estadia, v_restaurante, v_taxi) {
 document.addEventListener("DOMContentLoaded",async function(){
   document.dispatchEvent(new Event("checkin"))
   document.dispatchEvent(new Event("msg"))
+  document.dispatchEvent(new Event("bomba"))
+  document.dispatchEvent(new Event("planos"))
   await get_post()
   await cout()
 })
@@ -1036,7 +1038,9 @@ async function msg(){
     console.log(lc)
     let num=Number(lc)
     if(lc==null){
-      alert(`Oi! Você tem ${count} nova(s) mensagen(s) sobre os seus últimos posts. Confira agora no ícone do e-mail preto 📩.`)
+      if(count!=0){
+        alert(`Oi! Você tem ${count} nova(s) mensagen(s) sobre os seus últimos posts. Confira agora no ícone do e-mail preto 📩.`)
+      }
       localStorage.setItem("notifx",count)
     }
     else if(lc<count){

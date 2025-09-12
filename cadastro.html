@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="img/logo_2_png.png" type="image/x-icon">
+  <title>Cadastro Bancário</title>
+  <link rel="stylesheet" href="cadastro.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <!-- Lado informativo -->
+      <div class="info">
+        <div class="brand">
+          <div class="logo">💰</div>
+          <span>CVJourney Company</span>
+        </div>
+        <h1>Cadastro Bancário</h1>
+        <p class="lead">Receba pagamentos direto na conta bancaria e no app, gerencie suas contas e verifique recibos com facilidade.</p>
+        <div class="features">
+          <div class="feat">Hospedagem</div>
+          <div class="feat">Restaurante</div>
+          <div class="feat">Serviços</div>
+          <div class="feat">Pagamentos Seguros</div>
+        </div>
+        <p class="note">
+          Atenção: insira os dados bancários corretamente, pois não nos responsabilizamos por erros nos dados.
+        </p>
+      </div>
+
+      <!-- Lado formulário -->
+      <div class="checkout">
+        <form id="bankForm">
+          <label>Nome da conta
+            <input type="text" id="accountName" placeholder="Nome exato da conta" required>
+          </label>
+
+          <label>NIB / IBAN
+            <input type="text" id="nibIban" placeholder="Ex: CV12 3456 7890 1234 5678 90" required>
+          </label>
+
+          <label>Nome do banco
+            <input type="text" id="bankName" placeholder="Ex: Banco de Cabo Verde" required>
+          </label>
+
+          <label>Senha de edição
+            <input type="password" id="password" placeholder="Senha para editar os dados" required>
+          </label>
+
+          <div class="row checkbox">
+            <input type="checkbox" id="acceptTerms" required>
+            <label for="acceptTerms">Li e aceito todos os <a href="terms.html" rel="next" target="_blank">termos</a></label>
+          </div>
+
+          <button type="submit" class="btn" id="save">Salvar Dados</button>
+          <div class="success" id="successMsg">Dados salvos com sucesso!</div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+    <script src="script_conta.js"></script>
+    <script>
+        const form = document.getElementById("bankForm");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // <--- impede que a página recarregue
+            const valor = form.campo1.value;
+            console.log("Valor enviado:", valor);
+            alert("Formulário processado sem recarregar a página!");
+        });
+    </script>
+</body>
+</html>

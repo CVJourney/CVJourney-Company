@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="img/logo_2_png.png" type="image/x-icon">
+  <title>Pagamento por NIB</title>
+  <link rel="stylesheet" href="pagamento.css"> <!-- seu CSS que você enviou -->
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <!-- Lado informativo -->
+      <div class="info">
+        <div class="brand">
+          <div class="logo">💰</div>
+          <h1>Pagamento via NIB</h1>
+        </div>
+        <p class="lead">
+          Para efetuar o pagamento, utilize os dados abaixo no seu aplicativo do banco.
+        </p>
+
+        <div class="features">
+          <div class="feat"><strong>NIB:</strong> 123456789012345678901</div>
+          <div class="feat"><strong>Banco:</strong> Banco Exemplo</div>
+          <div class="feat"><strong>Nome do titular:</strong> Janilson Pereira</div>
+        </div>
+
+        <p class="note">
+            ⚠️ Atenção: Para concluir o pagamento, você deve acessar o aplicativo ou site do seu banco e realizar a transferência usando os dados acima.  
+            <br><br>
+            Por favor, preencha abaixo algumas informações suas para que possamos identificar o pagamento e liberar o plano correspondente:
+        </p>
+      </div>
+
+      <!-- Lado de inputs -->
+      <div class="checkout">
+        <form id="transferForm">
+          <label for="nomeConta">Nome da Conta Bancária</label>
+          <input type="text" id="nomeConta" name="nomeConta" placeholder="Ex: Maria Silva" required>
+
+          <label for="usuarioApp">Nome da Empresa</label>
+          <input type="text" id="usuarioApp" name="usuarioApp" placeholder="Digite o nome da empresa" required>
+
+          <button type="submit" class="btn">Enviar Dados</button>
+          <div class="success" id="successMessage">Obrigado! Seus dados foram enviados.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Todos os direitos reservados © 2025
+  </footer>
+
+  <script>
+    const form = document.getElementById('transferForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      // Aqui você pode enviar os dados para o seu backend
+      const nomeConta = document.getElementById('nomeConta').value;
+      const usuarioApp = document.getElementById('usuarioApp').value;
+
+      console.log("Nome da Conta:", nomeConta);
+      console.log("Nome do Usuário no App:", usuarioApp);
+
+      // Mostra a mensagem de sucesso
+      successMessage.style.display = 'block';
+      document.dispatchEvent(new Event("adicionaconta"))
+      form.reset();
+    });
+  </script>
+  <script src="pagamento.js"></script>
+  <script src="script_checkin.js"></script>
+</body>
+</html>

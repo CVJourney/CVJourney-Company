@@ -6,6 +6,7 @@
 body{
     width:100vw;
     height:100vh;
+    overflow-x: hidden;
 }
 
 #inicio{
@@ -39,8 +40,10 @@ header h1{
 #info_{
     font-size: 14px;
     margin: 5px;
+    width: 90%;
+    padding: 10px;
 }
-/*corte*/
+/*corte taxi_*/
 #info{
     margin-top: 20px;
     height: 90px;
@@ -214,7 +217,9 @@ select.dados_inseridos{
     border-radius: 10px;
     border: solid 1px black;
 }
-
+#taxi_img_perfil{
+    max-width: 200px;
+}
 textarea {
     padding: 10px;
     border-radius: 12px;
@@ -507,5 +512,14 @@ label.post_empresa{
     background-color: black;
     border-radius: 5px;
     box-shadow: 0 0 10px black;
+    text-decoration: none;
 }
-/*btn_update atualiza*/
+
+#cartao{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.774);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px;
+}
+/*btn_update atualiza animation*/

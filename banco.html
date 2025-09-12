@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="banco.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="img/logo_2_png.png" type="image/x-icon">
+    <title>CVJourney-banco</title>
+</head>
+<body>
+    <span id="close">
+        <a href="home.html" class="material-icons" id="fecha">
+            close
+        </a>
+    </span>
+
+    <div id="img_c">
+        <img src="img/logo_2_png.png" alt="" id="logo_">
+    </div>
+
+    <div id="campo">
+        
+        <div class="info_conta">
+            <h3>Nome da Conta</h3>
+            <input type="text" id="data_conta" placeholder="Os dados estão carregando...">
+        </div>
+        
+        <div class="info_conta">
+            <h3>Nib/Iban</h3>
+            <input type="text" id="data_nib" placeholder="Os dados estão carregando...">
+        </div>
+        
+        <div class="info_conta">
+            <h3>Nome do banco</h3>
+            <input type="text" id="data_banco" placeholder="Os dados estão carregando...">
+        </div>
+
+    </div>
+    <button id="update">Atualizar os dados</button>
+    <nav style="height:10px"></nav>
+    <div id="atuali">
+        <span id="fecha2" class="material-icons">
+            close
+        </span>
+        <div id="atualiza_">
+            <h1>Insira a senha que você definiu para realizar esta atualização.</h1>
+            <input type="password" id="senha_up" placeholder="Digite a senha aqui">
+            <button id="enviar">Enviar</button>
+        </div>
+    </div>
+
+    <script src="script_banco.js"></script>
+</body>
+</html>

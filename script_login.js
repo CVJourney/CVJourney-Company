@@ -117,7 +117,7 @@ async function validar(obj){
     if(valida==true && tipo=="registro"){
         console.log("Entramos")
         await addPost(dados)
-        window.location.href="home.html"
+        window.location.href="cadastro.html"
         //usar função de inserir dados no indexDDB
     }
     else if(valida==false && tipo=="registro"){
@@ -175,3 +175,4 @@ document.addEventListener("DOMContentLoaded",async function(){
 
 //https://cvpiramide.vercel.app/
 
+//plano.html

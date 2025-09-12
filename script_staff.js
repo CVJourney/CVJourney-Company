@@ -24,7 +24,12 @@ async function pegar(){
 async function trabalhar(data){
     data=data.reverse()
     data.map((e)=>{
-        let html=`${e.tipo==true?'<h2>Aceito ✅</h2>':'<h2>Negado ❌⛔</h2>'}<p class="msg_n">Post: <strong>${e.nome}</strong> <br>Empresa: <strong>${e.empresa}</strong><br>Mensagem: <strong>${e.msg}</strong></p>`
+        let html=`${e.tipo==null
+          ?
+          `Sobre: <strong>${e.nome}</strong>
+          <br>Empresa: <strong>${e.empresa}</strong><br>Mensagem: <strong>${e.msg}</strong></p>`
+          :
+          `${e.tipo==true?'<h2>Aceito ✅</h2>':'<h2>Negado ❌⛔</h2>'}<p class="msg_n">Post: <strong>${e.nome}</strong> <br>Empresa: <strong>${e.empresa}</strong><br>Mensagem: <strong>${e.msg}</strong></p>`}`
         let cria=document.createElement("div")
         cria.classList.add("criado")
         cria.innerHTML=html

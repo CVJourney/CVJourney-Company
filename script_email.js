@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded",async function(){
     const dia = String(date.getDate()).padStart(2, '0');
     let vira=null
     
-    data.map((e)=>{
+    data.map((e,i)=>{
       if(e.resposta!=null){
         let ress=e.resposta.split("-")
         let fim=`${ress[2]}-${ress[1]}-${ress[0]}`
@@ -136,9 +136,11 @@ async function lerPosts() {
 
 async function alter(vista,id){
   let data=apanha(`${id}_data`).value
-  console.log("er",data)  
+
+  console.log("er",data)
+
   if(!data){
-    alert("se deseja tirar este limite\nColoque uma data muito distante")
+    alert("Digite por favor a data de expiração do link")
   }
   else{
     let dd=data.split("-")
@@ -149,7 +151,7 @@ async function alter(vista,id){
         headers:{
           "content-type":"application/json"
         },
-        body:JSON.stringify({vista:vista,id:id,ano:ano})
+        body:JSON.stringify({vista:vista,id:id,ano:ano,link:link})
       })
       console.log("feito")
       window.location.reload()
