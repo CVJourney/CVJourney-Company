@@ -51,7 +51,8 @@ document.addEventListener("DOMContentLoaded",async function(){
         }
         ${
           e.compra == true
-            ? `<h6>Reserva concluída (${e.preco}$ECV)</h6>`
+            ? `<h6>Reserva concluída (${e.preco}$ECV)</h6>
+            <h6><a href='${e.link}' id="link" download>Ver o Recibo de pagamento</a></h6>`
             : e.compra == false
             ? `<h6>Reserva adiada</h6>`
             : vira == true
@@ -140,7 +141,7 @@ async function alter(vista,id){
   console.log("er",data)
 
   if(!data){
-    alert("Digite por favor a data de expiração do link")
+    alert("Digite por favor a data de expiração da proposta")
   }
   else{
     let dd=data.split("-")
@@ -151,7 +152,7 @@ async function alter(vista,id){
         headers:{
           "content-type":"application/json"
         },
-        body:JSON.stringify({vista:vista,id:id,ano:ano,link:link})
+        body:JSON.stringify({vista:vista,id:id,ano:ano})
       })
       console.log("feito")
       window.location.reload()
