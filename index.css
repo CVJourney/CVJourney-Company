@@ -538,6 +538,7 @@ label.post_empresa{
     max-width: 320px;
     max-height: 320px;
     background-image: url("https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3M2NoNHY1OW5ubWVtZGduNHc2MjRkcWRuczl6bzBjZTAxeWMzOXRyNiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/VseXvvxwowwCc/giphy.gif");
+    background-color: black;
     background-size: 100% 100%;
     background-position: center center;
     position: relative;
