@@ -522,4 +522,40 @@ label.post_empresa{
     border-radius: 5px;
     margin: 5px;
 }
+#loading_{
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999999999999999999999;
+    display: none;
+    position: fixed;
+    top: 0;
+    backdrop-filter: blur(3px);
+}
+
+#loading{
+    width: 80%;
+    height: 50%;
+    max-width: 320px;
+    max-height: 320px;
+    background-image: url("https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dGExazdkejd6bHozaTc4empiaXc5cGRzdnNkbzY0OWIwcmR6MWU2diZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3AMRa6DRUhMli/giphy.gif");
+    background-size: 100% 100%;
+    background-position: center center;
+    position: relative;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    box-shadow: 0 0 10px;
+}
+
+#loading h6{
+    color:white;
+    text-align: center;
+    font-size: 17px;
+}
+#loading h5{
+    padding-top: 30px;
+    text-align: center;
+    color: white;
+}
 /*btn_update atualiza animation*/

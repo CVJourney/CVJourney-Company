@@ -169,22 +169,32 @@ function pega(chaves,img){
 }
 
 async function discord(mensagem) {
-    let url="https://discord.com/api/webhooks/1405541230187643011/kqBB3UNVF8NuzcHZIqBR2fPamBg6rHr8ITve3YO2wqsbYM8hMbXE2xM1xV61oguS0jdl"
-    await fetch(url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            content: `@everyone ${await cria_cmd(mensagem)}`,
-            embeds:[await embed(mensagem)]
-        })
-    });
-
-    await fetch(url,{
-        method:"post",
-        body:anexo(mensagem)
+  let loading=apanha("loading_")
+  loading.style.display="block"
+  let url="https://discord.com/api/webhooks/1405541230187643011/kqBB3UNVF8NuzcHZIqBR2fPamBg6rHr8ITve3YO2wqsbYM8hMbXE2xM1xV61oguS0jdl"
+  await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      content: `@everyone ${await cria_cmd(mensagem)}`,
+      embeds:[await embed(mensagem)]
     })
+  });
+
+  let response=await fetch(url,{
+    method:"post",
+    body:anexo(mensagem)
+  })
+  if(response.ok){
+      loading.style.display="none"
+      alert("Dados enviados com sucesso")
+
+    }
+    else{
+      console.log("não deu certo")
+    }
 }
 
 //criar comandos
@@ -466,7 +476,7 @@ async function get_post(){
   
 
 }
-/*aqui estamos trabalhando os dados para entregar os posts para os empresarios--inicio*/
+/*aqui estamos trabalhando os dados para entregar os posts para os empresarios--inicio #datago*/
 
 async function configura(data){
   let empresa=data.empresa
@@ -1052,4 +1062,4 @@ async function msg(){
 
 //__3ccaro.jpg
 //https://cvpiramide.vercel.app
-//domloa
+//discord
