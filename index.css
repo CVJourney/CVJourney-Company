@@ -527,6 +527,7 @@ label.post_empresa{
     height: 100vh;
     z-index: 99999999999999999999999;
     position: fixed;
+    display: none;
     top: 0;
     backdrop-filter: blur(3px);
 }
