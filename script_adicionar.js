@@ -193,7 +193,8 @@ async function discord(mensagem) {
 
     }
     else{
-      console.log("não deu certo")
+      alert("Tivemos um pequeno erro, tente novamente e se não funcionar volte mais tarde")
+      loading.style.display="none"
     }
 }
 
