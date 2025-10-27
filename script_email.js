@@ -6,11 +6,21 @@ async function trabalhar(){
     let data=await getdata()
     return data
 }
-
+setInterval(() => {
+  let pri=apanha("pri_campo")
+  pri.innerHTML=""
+  document.dispatchEvent(new Event("DOMContentLoaded"))
+  console.log("vr12")
+}, 120*1000);
+let aler=1
 document.addEventListener("DOMContentLoaded",async function(){
+  console.log("vr13")
     document.dispatchEvent(new Event("checkin"))
     let data_= await trabalhar()
-    alert("Visualize aqui todas as solicitações enviadas à sua empresa ou perfil.")
+    if(aler==1){
+      alert("Visualize aqui todas as solicitações enviadas à sua empresa ou perfil.")
+    }
+    aler=2
     let data=data_.reverse()
     let div=apanha("pri_campo")
     let date=new Date()
@@ -45,8 +55,8 @@ document.addEventListener("DOMContentLoaded",async function(){
             : e.vista == false
             ? `<button class="ngt">Negado</button>`
             : `
-              <button class="act_2" onclick="alter(true, '${e.id}')">Aceito</button>
-              <button class="ngt_2" onclick="alter(false, '${e.id}')">Negar</button>
+              <button class="act_2" onclick="alter(true, '${e.id}','${e.autor}','${e.lugar}')">Aceito</button>
+              <button class="ngt_2" onclick="alter(false, '${e.id}','${e.autor}','${e.lugar}')">Negar</button>
             `
         }
         ${
@@ -55,14 +65,14 @@ document.addEventListener("DOMContentLoaded",async function(){
             <h6><a href='${e.link}' id="link" download>Ver o Recibo de pagamento</a></h6>`
             : e.compra == false
             ? `<h6>Reserva adiada</h6>`
-            : vira == true
+            : vira == true && e.resposta!=null
             ? `<h6 class="limite-s">Ainda a tempo ${e.resposta}</h6>`
-            : vira == false && e.resposta!=null
+            : vira == false && e.resposta!=null && e.vista==true
             ?`<h6 class="limite-n">Data ULTRAPASSADA (${e.resposta})</h6>`
-            : `<label for="data_ss" >
+            : e.vista!=false?`<label for="data_ss" >
                 Selecione a data limite para resposta
               </label>
-            <input type="date" class="data_2" class="data_ss" id="${e.id}_data" min=${ano}-${mes}-${dia}>`
+            <input type="date" class="data_2" class="data_ss" id="${e.id}_data" min=${ano}-${mes}-${dia}>`:""
         }
         ${
           (e.compra == false || e.compra == null) &&  e.vista!=false
@@ -135,15 +145,16 @@ async function lerPosts() {
   });
 }
 
-async function alter(vista,id){
+async function alter(vista,id,name,lugar){
   let data=apanha(`${id}_data`).value
 
   console.log("er",data)
 
-  if(!data){
+  if(!data && vista==true){
     alert("Digite por favor a data de expiração da proposta")
   }
   else{
+    name=name.replace(" ","_")
     let dd=data.split("-")
     let ano=`${dd[2]}-${dd[1]}-${dd[0]}`
     if(confirm("Deseja realizar o pedido?")){
@@ -155,9 +166,20 @@ async function alter(vista,id){
         body:JSON.stringify({vista:vista,id:id,ano:ano})
       })
       console.log("feito")
+
+      await fetch("https://apiprisma.vercel.app/sendPush",{
+        method:"post",
+        headers:{"content-type":"application/json"},
+        body:JSON.stringify({
+          usuario: name,
+          titulo: "CVJourney News",
+          mensagem: `Resposta sobre o seu pedido "${lugar}"`
+        })
+      })
       window.location.reload()
+
     }
   }
 
 }
-//https://cvpiramide.vercel.app/
+//http:localhost:4000/

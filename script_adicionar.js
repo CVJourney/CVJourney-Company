@@ -1064,3 +1064,4 @@ async function msg(){
 //__3ccaro.jpg
 //https://cvpiramide.vercel.app
 //discord
+//data_veriBC

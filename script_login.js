@@ -113,6 +113,12 @@ async function validar(obj){
         password:password,
         empresa:empresa
     }
+    let pr= /[.#$/\[\]/]/
+
+    if(pr.test(empresa) || pr.test(username)){
+      alert("Esses caracteres não são permitidos no nome da empresa nem no nome do usuário.")
+      return
+    }
 
     if(valida==true && tipo=="registro"){
         console.log("Entramos")
@@ -169,10 +175,3 @@ document.addEventListener("DOMContentLoaded",async function(){
 })
 
 // Exemplo de uso:
-
-//dados em analise
-
-
-//https://cvpiramide.vercel.app/
-
-//plano.html

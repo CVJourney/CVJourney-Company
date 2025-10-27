@@ -122,3 +122,41 @@ button.pri{
   box-shadow: 0 0 10px;
   transition: all 2s ease;
 }
+#logos{
+  display: none;
+}
+@media (min-width:1077px){
+  body{
+    background-image: url("img/fundo_login.png");
+  }
+  #logos{
+    display: inline-block;
+    width: 50%;
+  }
+  #logos img{
+    width: 100%;
+    display: inline-block;
+  }
+  .container{
+    width: 50%;
+    min-width: 800px;
+  }
+  #form-login{
+    display: inline-block;
+    width: 48%;
+  }
+  label{
+    color: rgb(27, 27, 27);
+  }
+  h1{
+    color: black;
+
+  }
+  input{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+  }
+  input::placeholder{
+    color:rgb(0, 0, 0)
+  }
+}

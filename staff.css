@@ -43,3 +43,19 @@ a{
     border-radius: 4px;
     padding: 4px 0;
 }
+@media (min-width:848px){
+    .criado{
+        width: 40%;
+        max-width: 700px;
+        text-align: left;
+        display: inline-block;
+        margin-left: 5%;
+    }
+
+    body{
+        overflow-x: hidden;
+    }
+    #img_logo{
+        width: 200px;
+    }
+}

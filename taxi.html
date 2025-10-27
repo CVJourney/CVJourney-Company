@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/logo_2_png.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>CVJourney-Empresas | taxi-chamada</title>
+    <link rel="stylesheet" href="taxi.css">
+</head>
+<body>
+    <aside id="taxi_loading_">
+        <aside id="loading">
+            <h1>Carregando...</h1>
+        </aside>
+    </aside>
+    <article id="close" class="material-icons">
+        close
+    </article>
+    <div id="apresenta">
+        <h2>
+            CVJourney Taxi | Tuas corridas
+        </h2>
+    </div>
+    <div id="solicita">
+
+    </div>
+
+    <script src="taxi.js"></script>
+    <script>
+        document.getElementById("close").addEventListener("click",()=>{
+            window.location.href="home.html"
+        })
+    </script>
+</body>
+</html>

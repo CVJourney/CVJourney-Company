@@ -189,4 +189,4 @@ function enviarMensagemDiscord(msg) {
 
 //desapareca
 //https://cvpiramide.vercel.app
-//http://localhost
+//http://localhost 

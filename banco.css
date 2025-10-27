@@ -7,6 +7,7 @@
 body{
     width: 100vw;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 #img_c{
@@ -100,4 +101,31 @@ body{
     border: solid 1px black;
     border-radius: 5px;
     box-shadow:0 0 10px black;
+}
+@media (min-width:848px){
+    #campo{
+        width: 30%;
+        max-width:400px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #campo input{
+        padding: 10px;
+    }
+    #update{
+        max-width: 30%;
+        max-width: 390px;
+    }
+    #atualiza_{
+        width: 40%;
+        text-align: center;
+    }
+    #atualiza_ input{
+        padding: 16px 5px;
+        font-size: 15px;
+    }
+    #enviar{
+        padding: 16px;
+    }
 }

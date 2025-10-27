@@ -1,0 +1,159 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow-x:hidden;
+}
+
+/*taxi loading*/
+
+#taxi_loading_{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(5px);
+    z-index: 99999;
+    display: none;
+}
+
+#loading{
+    width: 90%;
+    height: 50%;
+    max-width: 400px;
+    max-height: 390px;
+    background-color: white;
+    background-image: url("img/loading_taxi.gif");
+    background-size: cover;
+    background-position: center center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.253);
+    border-radius: 10px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+#loading h1{
+    text-align: center;
+    color: rgb(158, 156, 156);
+    font-size: 15px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/*taxi loading fim*/
+
+#close{
+    padding: 4px;
+    background-color: rgb(248, 185, 113);
+    color: white;
+    border-radius: 100%;
+    margin: 10px;
+    position: fixed;
+    top: 0;
+}
+#apresenta{
+    margin-top: 25px;
+}
+#apresenta h2{
+    display: inline-block;
+    width: 80%;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bolder;
+    font-size: 8vw;
+    text-align: center;
+    background-image: linear-gradient(to left, rgb(252, 216, 162), rgb(247, 174, 79),rgb(252, 96, 48));
+    background-clip: text;
+    color: transparent;
+    box-shadow: 0 40px 20px rgba(248, 164, 164, 0.164);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+}
+
+#solicita{
+    margin-top: 70px;
+    text-align: center;
+}
+section{
+    display:inline-block;
+}
+
+/*css das caixas de corrida*/
+
+.caixa_mai{
+    padding: 10px;
+    display: inline-block;
+    max-width: 500px;
+    margin: 20px 10px;
+    border: solid 3px rgb(211, 211, 211);
+    border-radius: 10px;
+    text-align: left;
+}
+
+.caixa_mai iframe{
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+h4{
+    padding: 5px;
+    margin: 5px;
+    border: solid 2px rgb(223, 221, 221);
+    border-radius: 3px;
+}
+
+h5,h6{
+    display: inline-block;
+    width: 50%;
+    border: solid 1px rgb(228, 228, 228);
+    margin: 5px;
+    padding: 5px;
+}
+
+h6{
+    width: 30%;
+    border-color: black;
+    text-transform: capitalize;
+}
+input{
+    width: 92%;
+    margin: 5px;
+    padding: 5px ;
+}
+
+button{
+    padding: 6px 0;
+    width: 45%;
+    margin-left: 5px;
+    border-radius: 4px;
+    transition: all 2s ease;
+}
+.aceito{
+    background-color: white;
+    border: solid 4px rgb(221, 220, 220);
+    color: black;
+}
+
+button:hover{
+    box-shadow: 0 0 20px rgb(54, 54, 54);
+    transition: all 2s ease;
+}
+.nego{
+    background-color: black;
+    border: solid 4px rgb(70, 69, 69);
+    color: white;
+}
+#btn_div{
+    margin-top: 10px;
+    text-align: center;
+} /*css das caixas de corrida*/

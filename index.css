@@ -559,4 +559,136 @@ label.post_empresa{
     text-align: center;
     color: white;
 }
-/*btn_update atualiza animation*/
+
+@media (min-width:848px){
+    #inicio,#corte{
+        background-image: url("img/fundo_pc.png");
+    }
+    #inicio *{
+        display: none;
+    }
+    div#info{
+        height: auto;
+        width: 50%;
+        padding: 10px;
+        border: solid 3px whitesmoke;
+        border-radius: 10px;
+        margin-left: 10px;
+
+    }
+    #vermais{
+        display: none;
+    }
+    #perfil_x{
+        margin: 20px;
+        padding: 10px;
+        font-size: 29px;
+        display: inline-block;
+        float: none;
+    }
+    #perfil_x::after{
+        content: "PERFIL";
+    }
+    #escolha{
+        max-width: 50%;
+    }
+    #nada{
+        font-size: 30px;
+    }
+    .apareca{
+        width: 50%;
+        padding: 20px;
+        margin: 20px;
+        border: solid 5px rgb(223, 222, 222);
+        border-radius: 10px;
+        position: relative;
+        left:50%;
+        transform: translateX(-50%);
+    }
+    .apareca input,.apareca select{
+        display: block;
+        width: 60%;
+    }
+    .apareca #imagens_guia_,#imagens_estadia_,#imagens_restaurante_,#imagens_taxi_{
+        width: 450px;
+        box-shadow: 0 0 0 0;
+    }
+    #adicionar{
+        width: 55%;
+        margin-left: 20px;
+    }
+    .apareca select{
+        width: 63%;
+    }
+    #info_guia,#info_estadia,#info_restaurante{
+        margin: 0;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .numero_{
+        left: 10%;
+    }
+    .delete_x{
+        float: right;
+        right: 27px;
+    }
+    #foto_perfil_taxi_{
+        display: inline-block;
+        width: 60%;
+    }
+    .titulo_file{
+        max-width: 190px;
+        color: white;
+        display: inline-block;
+        width: 40%;
+        padding: 20px;
+        box-shadow: 0 0 20px rgb(208, 245, 248);
+    }
+    .titulo_file:hover{
+        box-shadow: 0 0 10px rgb(179, 226, 253);
+    }
+    .titulos{
+        display: inline-block;
+        width: 70%;
+        position: relative;
+    }
+    #mai{
+        background-image: url("img/posts2.png");
+        background-color: rgb(111, 231, 252);
+        background-size: cover;
+        background-position: top center;
+        animation:none;
+    }
+    .pratos_info input{
+        display: inline-block;
+        width: 40%;
+    }
+    #disponivel_2{
+        max-width: 52%;
+        padding: 10px;
+        position: relative;
+        left: 51%;
+        transform: translateX(-50%);
+    }
+    #delete{
+        position: relative;
+        left: 19px;
+        width: 53%;
+        padding: 20px 0;
+        margin-bottom: 20px;
+        border-radius: 20px;
+    }
+
+}
+
+#taxi_3{
+    background-color: gray;
+    color: white;
+    padding: 10px;
+    border-radius: 100%;
+    box-shadow: 0 0 10px gray;
+    text-decoration: none;
+}
+/*btn_update atualiza animation
+disponivel_2*/
