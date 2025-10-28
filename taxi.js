@@ -25,10 +25,14 @@ async function captura(){
 
 async function trabalhando(dd){
   console.log(dd)
+  dd=dd.reverse()
   let mai=document.getElementById("solicita")
   dd.map((e,i)=>{
     let cria=document.createElement("section")
+    e.hora=String(e.hora).replace("T"," ")
     let intime=cal_tempo(e.hora,e.tempo)
+    console.log(intime)
+    console.log(e.cliente_name,e.hora, e.tempo)
     let horario=calc_horario(e.hora,e.tempo)
     let html=`
     <div class="caixa_mai">
@@ -69,34 +73,46 @@ async function trabalhando(dd){
   })
 }
 
-function cal_tempo(date,time){
-  const solicitacao = new Date(date);
-  const limite = time; // 10 minutos
-  const agora = new Date();
+function cal_tempo(dateStr, limiteStr) {
+  console.log("🟢 Recebido:", { dateStr, limiteStr });
 
-  // converter limite para milissegundos
-  const [horas, minutos] = limite.split(":").map(Number);
-  const tempoMaximoMs = (horas * 60 + minutos) * 60 * 1000;
-
-  // diferença de tempo entre agora e a solicitação
-  const diferencaMs = agora - solicitacao;
-
-  // verificar se ainda está dentro do tempo
-  const dentroDoTempo = diferencaMs <= tempoMaximoMs;
-
-  // verificar se é o mesmo dia
-  const mesmoDia =
-    solicitacao.getUTCFullYear() === agora.getUTCFullYear() &&
-    solicitacao.getUTCMonth() === agora.getUTCMonth() &&
-    solicitacao.getUTCDate() === agora.getUTCDate();
-
-  if (dentroDoTempo && mesmoDia) {
-    return true
-  } else {
-    return false
+  if (!dateStr || typeof dateStr !== "string") {
+    console.error("❌ Erro: parâmetro 'dateStr' é inválido ->", dateStr);
+    return false;
+  }
+  if (!limiteStr || typeof limiteStr !== "string") {
+    console.error("❌ Erro: parâmetro 'limiteStr' é inválido ->", limiteStr);
+    return false;
   }
 
+  // Corrigir espaços e formato ISO se faltar o "T"
+  dateStr = dateStr.trim().replace(" ", "T");
+
+  const solicitacao = new Date(dateStr);
+  if (isNaN(solicitacao.getTime())) {
+    console.error("❌ Data inválida após conversão:", dateStr);
+    return false;
+  }
+
+  const [h, m] = limiteStr.trim().split(":").map(Number);
+  if (isNaN(h) || isNaN(m)) {
+    console.error("❌ Formato de tempo inválido:", limiteStr);
+    return false;
+  }
+
+  const tempoMaximoMs = (h * 60 + m) * 60 * 1000;
+  const limiteAbsoluto = new Date(solicitacao.getTime() + tempoMaximoMs);
+  const agora = new Date()
+
+
+  console.log("🕒 Solicitacao:", solicitacao.toISOString());
+  console.log("⏱️ Limite:", limiteAbsoluto.toISOString());
+  console.log("⌛ Agora:", agora);
+
+  return agora <= limiteAbsoluto;
 }
+
+
 
 function calc_horario(date, time) {
   // date: Date ou string ISO "2025-10-21T12:33:37.402Z"
