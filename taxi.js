@@ -229,6 +229,7 @@ async function msg_enviar(msg){
   if(response.ok){
     alert("Resposta enviada com sucesso🎉")
     taxi.style.display="none"
+    window.location.reload()
   }
 
   
