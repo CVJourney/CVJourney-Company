@@ -690,5 +690,15 @@ label.post_empresa{
     box-shadow: 0 0 10px gray;
     text-decoration: none;
 }
+
+#download{
+    padding: 10px;
+    border-radius: 100%;
+    background-color: rgb(255, 202, 123);
+    color: white;
+    box-shadow: 0 0 10px burlywood;
+}
 /*btn_update atualiza animation
 disponivel_2*/
+
+/*atualiza*/
