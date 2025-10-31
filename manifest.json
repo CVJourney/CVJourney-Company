@@ -1,7 +1,7 @@
 {
   "name": "CVJourney Empresa",
   "short_name": "CVJourney Empresa",
-  "start_url": "/",
+  "start_url": "https://cvjourney.github.io/CVJourney-Company/home.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#027373",
