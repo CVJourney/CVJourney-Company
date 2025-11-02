@@ -1,0 +1,705 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+body{
+    width:100vw;
+    height:100vh;
+    overflow-x: hidden;
+}
+
+#inicio{
+    background-image: url("img/fundo.png");
+    background-color: maroon;
+    background-position: bottom center;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    width:100%;
+    height:100%;
+}
+
+header h3{
+    color: rgb(151, 150, 149);
+}
+#texto_head{
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-100%);
+}
+
+header h1{
+    background:linear-gradient(to left,rgb(161, 158, 154),rgb(53, 53, 53));
+    background-clip: text;
+    color: transparent;
+    font-size: 9vw;
+}
+
+#info_{
+    font-size: 14px;
+    margin: 5px;
+    width: 90%;
+    padding: 10px;
+}
+/*corte taxi_*/
+#info{
+    margin-top: 20px;
+    height: 90px;
+    overflow-y: hidden;
+    transition: all 1s ease;
+}
+
+#vermais{
+    text-align: center;
+    padding: 5px 10px;
+    background-color: linen;
+    border-radius: 10px;
+    color: rgb(110, 109, 109);
+    border: none;
+    box-shadow: 0 0 10px rgb(250, 242, 220);
+    position: relative;
+    margin-top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#cate_area{
+    margin-top: 40px;
+}
+
+#cate_area{
+    text-align: center;
+    color: transparent;
+    background:linear-gradient(to right,rgb(88, 88, 88),rgb(185, 185, 185),rgb(90, 90, 89));
+    background-clip: text;
+}
+
+#escolha{
+    width: 90%;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+select{
+    background-color: white;
+}
+
+#corte{
+    background-image: url("img/fundo.png");
+    background-size: 100% 100%;
+    background-position: bottom center;
+    background-attachment: fixed;
+    margin-top: 20px;
+    width: 100%;
+    height: 200px;
+    box-shadow: 0 0 50px rgb(192, 191, 190);
+}
+
+#nada{
+    margin: 10px;
+    text-align: center;
+    height: 200px;
+}
+
+#nada h2{
+    position:relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bolder;
+    color: transparent;
+    background:linear-gradient(to right,gray,rgba(128, 128, 128, 0.849),white);
+    background-clip:text;
+}
+
+#titulo_guia{
+    background:linear-gradient(to left,rgba(0, 0, 0, 0.76),rgb(119, 119, 119));
+    background-clip: text;
+    font-size: 13px;
+    color: transparent;
+    text-align: center;
+    margin-top: 40px;
+}
+.dados_inseridos{
+    padding: 10px;
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 80%;
+    margin: 10px 0;
+    position: relative;
+    left:50%;
+    transform: translateX(-50%);
+}
+select.dados_inseridos{
+    width: calc(80% + 20px);
+}
+
+.pratos_info{
+    text-align: center;
+    box-shadow: 0 0 3px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
+.pratos_info input{
+    padding: 10px;
+    border-radius: 12px;
+    border: solid 1px black;
+    margin-top: 10px;
+    width: 40%;
+    display: inline-block;
+}
+
+#info_guia{
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#imagens_guia_{
+    text-align: center;
+    height: 320px;
+    padding: 10px;
+    width: 90%;
+    box-shadow: 0 0 10px black;
+    border-radius: 10px;
+    margin-top: 10px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#imagens_guia_ img{
+    width: 48%;
+    border-radius: 10px;
+    border: solid 1px black;
+}
+
+
+.sair{
+    display: none;
+}
+
+#estadia, #restaurante, #taxi {
+    margin-top: 40px;
+}
+
+#titulo_estadia, #titulo_restaurante, #titulo_taxi {
+    background: linear-gradient(to left, rgba(0,0,0,0.76), rgb(119,119,119));
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#imagens_estadia_, #imagens_restaurante_, #prato_imagem_, #foto_perfil_taxi_, #imagens_taxi_ {
+    text-align: center;
+    padding: 10px;
+    width: 90%;
+    box-shadow: 0 0 10px black;
+    border-radius: 10px;
+    margin-top: 10px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#imagens_guia_ img,
+#imagens_estadia_ img, 
+#imagens_restaurante_ img,
+#foto_perfil_taxi_ img,
+#imagens_taxi_ img {
+    width: 48%;
+    height: 150px;
+    border-radius: 10px;
+    border: solid 1px black;
+}
+#taxi_img_perfil{
+    max-width: 200px;
+}
+textarea {
+    padding: 10px;
+    border-radius: 12px;
+    border: solid 1px black;
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 80%;
+}
+
+textarea {
+    resize: none;
+}
+
+.pratos{
+    height: 60px;
+    width: 50px;
+    box-shadow: 0 0 10px black;
+    border-radius: 5px;
+}
+
+#titulo_prato{
+    font-size: 12px;
+    margin: 10px;
+}
+
+.desapareca{
+    display:none;
+    opacity: 0;
+}
+
+.apareca{
+    transition: all 2s ease;
+}
+
+#adicionar{
+    text-align: center;
+    padding:10px 0;
+    background-color: rgb(0, 0, 0);
+    border: solid 1px black;
+    color: white;
+    border-radius: 10px;
+    width: 90%;
+    margin: 10px 0;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.numero_{
+    position: relative;
+    top: -25px;
+    left: 50px;
+}
+
+.venha{
+    display: none;
+}
+#folder_sai{
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.158);
+    border-radius: 20px;
+    margin: 5px;
+    color: transparent;
+    background-image: linear-gradient(to left,white,black);;
+    background-clip: text;
+}
+#folder{
+    position: fixed;
+    left: 0;
+    top: 0;
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.158);
+    border-radius: 20px;
+    margin: 5px;
+    color: transparent;
+    background-image: linear-gradient(to left,white,black);;
+    background-clip: text;
+    z-index: 99999;
+    display: inline-block;
+}
+
+/*a parte dos files*/
+
+#mai{
+    width: 100%;
+    height: 0;
+    position: fixed;
+    top: 0;
+    left:0;
+    z-index: 999999;
+    background-color: white;
+    transition: all 2s ease;
+    overflow-y: auto;
+    background-image: url("img/fundo_y.jpeg");
+    background-position: center center;
+    background-size: contain;
+    background-attachment: fixed;
+
+    animation: slideBackground 20s linear infinite;
+}
+
+@keyframes slideBackground {
+    0% { background-position: left center; }
+    50% { background-position: right center; }
+    100% { background-position: left center; }
+}
+
+.lista_data{
+    overflow-y: auto;
+    max-width: 100%;
+    margin-top: 50px;
+
+}
+
+.numero_{
+    display: block;
+    width: 50%;
+}
+.titulos{
+    margin-top: 70px;
+}
+
+.titulo_file{
+    margin: 25px;
+    text-align: center;
+    border: solid 1px;
+    padding: 10px;
+    border-radius: 10px;
+    color: rgb(73, 73, 72);
+    transition: all 2s ease;
+    backdrop-filter: blur(1px);
+}
+
+.titulo_file:hover{
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+    transition:  all 2s ease;
+}
+
+#criado{
+    margin-top: 30px;
+}
+
+.btn_update{
+    padding: 9px 10px;
+    border-radius: 10px;
+    border: solid 1px ;
+    text-align: center;
+    width: 85%;
+    color: white;
+
+}
+#criado_btn{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#delete{
+    background-color: rgb(0, 0, 0);
+}
+
+#atualiza{
+    background-color: rgb(255, 255, 255);
+    color: black;
+    margin: 10px;
+}
+
+#perfil_x{
+    background-color: rgb(192, 192, 192);
+    color:white;
+    padding: 5px;
+    border-radius: 10px;
+    float: right;
+    margin-right: 5px;
+}
+
+.perfil_x_div{
+    z-index: 99999999999;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    background-color: rgb(250, 245, 230);
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+}
+
+label.post_empresa{
+    display: inline-block;
+    width: 90px;
+    font-weight: normal;
+}
+
+.perfil_x_div h4{
+    margin: 10px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.perfil_x_div h4 span{
+    text-transform: none;
+}
+
+.perfil_x_div div{
+    border: solid 1px black;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.delete_x{
+    position: absolute;
+    right: 10%;
+    background-color: rgba(255, 0, 0, 0.322);
+    color: white;
+    border-radius: 5px;
+    padding: 3px;
+}
+#close_x{
+    color: red;
+    background-color: transparent;
+    margin: 2px;
+}
+#div_elemina{
+    border: none;
+    text-align: right;
+    padding: 0;
+    margin: 0;
+}
+#criar_conta{
+    padding: 5px 8px;
+    border-radius: 10px;
+    border: solid 1px white;
+    background-color: rgba(255, 255, 255, 0.438);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.288);
+    color: rgb(0, 0, 0);
+
+    position: relative;
+    left: 50%;
+    margin: 10px;
+    transition: all 3s ease;
+    transform: translateX(-55%);
+}
+
+#email{
+    padding: 10px;
+    color: rgb(247, 246, 246);
+    backdrop-filter: blur(10px);
+    border: solid 1px rgb(133, 131, 131);
+    margin: 10px;
+    box-shadow: 0 0 10px rgb(66, 66, 66);
+    border-radius: 5px;
+    background-color: rgb(241, 145, 145);
+    background-size: 100% 100%;
+    background-position: center center;
+}
+
+#msg_2{
+    display: inline-block;
+    background-color: red;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+
+}
+#disponivel_2{
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    background-color: rgb(226, 226, 226);
+    border-radius: 10px;
+    color: rgb(48, 47, 47);
+}
+
+#troca{
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    background-color: transparent;
+    margin: 5px;
+}
+
+#email_staff{
+    padding: 10px;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    box-shadow: 0 0 10px black;
+    text-decoration: none;
+}
+
+#cartao{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.774);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px;
+}
+#loading_{
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999999999999999999999;
+    position: fixed;
+    display: none;
+    top: 0;
+    backdrop-filter: blur(3px);
+}
+
+#loading{
+    width: 80%;
+    height: 50%;
+    max-width: 320px;
+    max-height: 320px;
+    background-image: url("https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3M2NoNHY1OW5ubWVtZGduNHc2MjRkcWRuczl6bzBjZTAxeWMzOXRyNiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/VseXvvxwowwCc/giphy.gif");
+    background-color: black;
+    background-size: 100% 100%;
+    background-position: center center;
+    position: relative;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    box-shadow: 0 0 10px;
+}
+
+#loading h6{
+    color:white;
+    text-align: center;
+    font-size: 17px;
+}
+#loading h5{
+    padding-top: 20px;
+    text-align: center;
+    color: white;
+}
+
+@media (min-width:848px){
+    #inicio,#corte{
+        background-image: url("img/fundo_pc.png");
+    }
+    #inicio *{
+        display: none;
+    }
+    div#info{
+        height: auto;
+        width: 50%;
+        padding: 10px;
+        border: solid 3px whitesmoke;
+        border-radius: 10px;
+        margin-left: 10px;
+
+    }
+    #vermais{
+        display: none;
+    }
+    #perfil_x{
+        margin: 20px;
+        padding: 10px;
+        font-size: 29px;
+        display: inline-block;
+        float: none;
+    }
+    #perfil_x::after{
+        content: "PERFIL";
+    }
+    #escolha{
+        max-width: 50%;
+    }
+    #nada{
+        font-size: 30px;
+    }
+    .apareca{
+        width: 50%;
+        padding: 20px;
+        margin: 20px;
+        border: solid 5px rgb(223, 222, 222);
+        border-radius: 10px;
+        position: relative;
+        left:50%;
+        transform: translateX(-50%);
+    }
+    .apareca input,.apareca select{
+        display: block;
+        width: 60%;
+    }
+    .apareca #imagens_guia_,#imagens_estadia_,#imagens_restaurante_,#imagens_taxi_{
+        width: 450px;
+        box-shadow: 0 0 0 0;
+    }
+    #adicionar{
+        width: 55%;
+        margin-left: 20px;
+    }
+    .apareca select{
+        width: 63%;
+    }
+    #info_guia,#info_estadia,#info_restaurante{
+        margin: 0;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .numero_{
+        left: 10%;
+    }
+    .delete_x{
+        float: right;
+        right: 27px;
+    }
+    #foto_perfil_taxi_{
+        display: inline-block;
+        width: 60%;
+    }
+    .titulo_file{
+        max-width: 190px;
+        color: white;
+        display: inline-block;
+        width: 40%;
+        padding: 20px;
+        box-shadow: 0 0 20px rgb(208, 245, 248);
+    }
+    .titulo_file:hover{
+        box-shadow: 0 0 10px rgb(179, 226, 253);
+    }
+    .titulos{
+        display: inline-block;
+        width: 70%;
+        position: relative;
+    }
+    #mai{
+        background-image: url("img/posts2.png");
+        background-color: rgb(111, 231, 252);
+        background-size: cover;
+        background-position: top center;
+        animation:none;
+    }
+    .pratos_info input{
+        display: inline-block;
+        width: 40%;
+    }
+    #disponivel_2{
+        max-width: 52%;
+        padding: 10px;
+        position: relative;
+        left: 51%;
+        transform: translateX(-50%);
+    }
+    #delete{
+        position: relative;
+        left: 19px;
+        width: 53%;
+        padding: 20px 0;
+        margin-bottom: 20px;
+        border-radius: 20px;
+    }
+
+}
+
+#taxi_3{
+    background-color: gray;
+    color: white;
+    padding: 10px;
+    border-radius: 100%;
+    box-shadow: 0 0 10px gray;
+    text-decoration: none;
+}
+
+#download{
+    padding: 10px;
+    border-radius: 100%;
+    background-color: rgb(255, 202, 123);
+    color: white;
+    box-shadow: 0 0 10px burlywood;
+}
+/*btn_update atualiza animation
+disponivel_2*/
+
+/*atualiza
+fundo*/
