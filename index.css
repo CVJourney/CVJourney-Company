@@ -10,7 +10,7 @@ body{
 }
 
 #inicio{
-    background-image: url("img/fundo\ \(2\).jpeg");
+    background-image: url("img/fundo.png");
     background-color: maroon;
     background-position: bottom center;
     background-size: 100% 100%;
@@ -91,7 +91,7 @@ select{
 }
 
 #corte{
-    background-image: url("img/fundo\ \(2\).jpeg");
+    background-image: url("img/fundo.png");
     background-size: 100% 100%;
     background-position: bottom center;
     background-attachment: fixed;
@@ -700,5 +700,6 @@ label.post_empresa{
 }
 /*btn_update atualiza animation
 disponivel_2*/
+
 
 /*atualiza*/
