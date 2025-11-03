@@ -1,5 +1,5 @@
 {
-  "name": "CVJourney Empresa",
+  "name": "CVJourney Empresas",
   "short_name": "CVJourney Empresa",
   "start_url": "https://cvjourney.github.io/CVJourney-Company/home.html",
   "display": "standalone",
@@ -34,4 +34,5 @@
   ]
 
 }
+
 
