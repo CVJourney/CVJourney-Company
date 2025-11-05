@@ -167,7 +167,7 @@ async function alter(vista,id,name,lugar){
       })
       console.log("feito")
 
-      await fetch("https://apiprisma.vercel.app/sendPush",{
+      let resposta=await fetch("https://apinotification.vercel.app/sendPush",{
         method:"post",
         headers:{"content-type":"application/json"},
         body:JSON.stringify({
@@ -176,10 +176,17 @@ async function alter(vista,id,name,lugar){
           mensagem: `Resposta sobre o seu pedido "${lugar}"`
         })
       })
-      window.location.reload()
+      if(resposta.ok){
+        window.location.reload()
+      }
+      else{
+        console.log("não deu certo")
+        alert("Algo deu errado, por favor verefique a sua conexão com a internet")
+      }
 
     }
   }
 
 }
 //http:localhost:4000/
+//apinotification
